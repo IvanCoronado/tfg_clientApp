@@ -15,12 +15,54 @@
 		$urlRouterProvider.otherwise("/");
 		//
 		// Now set up the states
-		$stateProvider
-		    .state('dashboard', {
-		      url: "/",
-		      templateUrl: "views/dashboard.html"
-		    });
+		var app = {
+                name: 'app',
+                abstract: true,
+                templateUrl: 'views/app.layout.html'
+            },
+            all = {
+                name: 'all',
+                url: '/all',
+                parent: app,
+                templateUrl: 'views/app.dashboard.html',
+                controller: 'dashboardCtrl as vm',
+                resolve:{
+			    	initData:  function(){
+			            return {value: 'todos!'};
+			         }
+			    }
+            },
+            counters = {
+                name: 'counters',
+                url: '/counters',
+                parent: app,
+                templateUrl: 'views/app.dashboard.html',
+                controller: 'dashboardCtrl as vm',
+			    resolve:{
+			    	initData:  function(){
+			            return {value: 'solo contadores!'};
+			         }
+			    }
+            },
+            temperature = {
+                name: 'temperature',
+                url: '/temperature',
+                parent: app,
+                templateUrl: 'views/app.dashboard.html',
+                controller: 'dashboardCtrl as vm',	       
+		        resolve:{
+			    	initData:  function(){
+			            return {value: 'solo temperatura!'};
+			         }
+			    }
+            };
+    
+        $stateProvider.state(app);
+	        $stateProvider.state(all);
+	        $stateProvider.state(counters);
+	        $stateProvider.state(temperature);
 
+		
 	}
 
 })();
