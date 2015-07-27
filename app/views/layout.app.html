@@ -12,34 +12,23 @@
 	        </div>
 	    </md-toolbar>
 
-		<md-list>
+		<md-list layout="column" >
 			<md-subheader>Menu</md-subheader>
-			<md-item ng-repeat="item in nav.menu track by $index">
-		        <a ui-sref="{{item.link}}">
-		          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+			<md-item flex ng-repeat="item in nav.menu track by $index" >
+		        <md-button class="menu-button" ui-sref-active="active" flex ui-sref="{{item.link}}" layout-fill ng-click=" nav.showMenu()">
+		          <md-item-content md-ink-ripple layout="row" layout-align="start space-around">
 		            <div class="inset">
 		              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
 		            </div>
 		            <div class="inset">{{item.title}}
 		            </div>
 		          </md-item-content>
-		        </a>
+		        </md-button>
 		     </md-item>
 
 			<md-divider></md-divider>
 
 	      	<md-subheader>Otra categoría</md-subheader>  
-	      	<md-item >
-		        <a ui-sref="{{item.link}}">
-		          <md-item-content md-ink-ripple layout="row" layout-align="start center">
-		            <div class="inset">
-		              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-		            </div>
-		            <div class="inset">{{item.title}}
-		            </div>
-		          </md-item-content>
-		        </a>
-		     </md-item>
 		</md-list>
 	</ul>
 </md-sidenav>

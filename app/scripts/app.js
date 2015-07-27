@@ -9,8 +9,13 @@
         .config(config);
 
 	/* @ngInject */
-    function config($stateProvider, $urlRouterProvider) {
+    function config($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 		//
+        // Select color theme
+        $mdThemingProvider.theme('default')
+            .primaryPalette('red')
+            .accentPalette('orange');
+        //
 		// For any unmatched url, redirect to /
 		$urlRouterProvider.otherwise("/devices");
 		//

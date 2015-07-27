@@ -11,3 +11,13 @@
 body {
   padding: 0;
 }
+
+
+md-item .md-button.menu-button{
+	margin: 0;
+	overflow: inherit;
+	&.active{
+		color: #F44336;
+	}
+}
+

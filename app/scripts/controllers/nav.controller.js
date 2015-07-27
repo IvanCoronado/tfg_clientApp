@@ -15,11 +15,13 @@
         nav.menu = 
         	[
 	        	{
+              id: 'devices',
 	        		link : 'app.devices',
 			      	title: 'Dispositivos',
 			      	icon: 'fa fa-plug'
 	        	},
 	        	{
+              id: 'map',
 	        		link : 'app.map',
 			      	title: 'Mapa',
 			      	icon: 'fa fa-map-marker'

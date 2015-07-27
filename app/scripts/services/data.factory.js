@@ -11,14 +11,20 @@
     function DataService($http, $location, logger) {
             
         var service = {
-            getMentions: getMentions,
+            getAllDevices: getAllDevices,
             
         };
         return service;
 
         ////////////////
-       
-        function enableUserArea(userId,areaNameId){
+        var devices =[];
+        var url =""
+
+        function initDevices(){
+
+        }
+
+        function getAllDevices(userId,areaNameId){
             var myUrl = server + "/users/"+userId+"/areas/"+areaNameId;
 
             return $http({
