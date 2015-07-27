@@ -12,55 +12,37 @@
     function config($stateProvider, $urlRouterProvider) {
 		//
 		// For any unmatched url, redirect to /
-		$urlRouterProvider.otherwise("/");
+		$urlRouterProvider.otherwise("/devices");
 		//
 		// Now set up the states
 		var app = {
                 name: 'app',
                 abstract: true,
-                templateUrl: 'views/app.layout.html'
+                templateUrl: 'views/layout.app.html'
             },
-            all = {
-                name: 'all',
-                url: '/all',
-                parent: app,
-                templateUrl: 'views/app.dashboard.html',
-                controller: 'dashboardCtrl as vm',
-                resolve:{
-			    	initData:  function(){
-			            return {value: 'todos!'};
-			         }
-			    }
-            },
-            counters = {
-                name: 'counters',
-                url: '/counters',
-                parent: app,
-                templateUrl: 'views/app.dashboard.html',
-                controller: 'dashboardCtrl as vm',
-			    resolve:{
-			    	initData:  function(){
-			            return {value: 'solo contadores!'};
-			         }
-			    }
-            },
-            temperature = {
-                name: 'temperature',
-                url: '/temperature',
-                parent: app,
-                templateUrl: 'views/app.dashboard.html',
-                controller: 'dashboardCtrl as vm',	       
-		        resolve:{
-			    	initData:  function(){
-			            return {value: 'solo temperatura!'};
-			         }
-			    }
-            };
+                    devices = {
+                        name: 'app.devices',
+                        url: '/devices',
+                        parent: app,
+                        templateUrl: 'views/app.devices.html',
+                        controller: 'devicesCtrl as vm',
+                        resolve:{
+        			    	initData:  function(){
+        			            return {value: 'todos!'};
+        			         }
+        			    }
+                    },
+                    map = {
+                        name: 'app.map',
+                        url: '/map',
+                        parent: app,
+                        templateUrl: 'views/app.map.html',
+                        controller: 'mapCtrl as vm'
+                    };
     
-        $stateProvider.state(app);
-	        $stateProvider.state(all);
-	        $stateProvider.state(counters);
-	        $stateProvider.state(temperature);
+        $stateProvider.state(app)
+	        .state(devices)
+	        .state(map);
 
 		
 	}

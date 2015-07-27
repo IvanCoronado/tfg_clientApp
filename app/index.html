@@ -20,7 +20,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <ui-view></ui-view>
+    <ui-view layout="row" ng-controller="navCtrl as nav"></ui-view>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -45,7 +45,9 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/dashboard.controller.js"></script>
+        <script src="scripts/controllers/nav.controller.js"></script>
+        <script src="scripts/controllers/map.controller.js"></script>
+        <script src="scripts/controllers/devices.controller.js"></script>
         <!-- endbuild -->
 </body>
 </html>

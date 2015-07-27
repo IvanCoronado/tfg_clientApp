@@ -1,0 +1,63 @@
+<md-sidenav 
+	layout="column" 
+	class="md-sidenav-left md-whiteframe-z2" 
+	md-component-id="left" 
+	md-is-locked-open="$mdMedia('gt-md')"
+	style="min-height:700px">
+		<md-toolbar class="md-tall md-hue-2">
+	        <span flex></span>
+	        <div layout="column" class="md-toolbar-tools-bottom inset">
+	          <user-avatar>logo</user-avatar>
+	          <span></span>
+	        </div>
+	    </md-toolbar>
+
+		<md-list>
+			<md-subheader>Menu</md-subheader>
+			<md-item ng-repeat="item in nav.menu track by $index">
+		        <a ui-sref="{{item.link}}">
+		          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+		            <div class="inset">
+		              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+		            </div>
+		            <div class="inset">{{item.title}}
+		            </div>
+		          </md-item-content>
+		        </a>
+		     </md-item>
+
+			<md-divider></md-divider>
+
+	      	<md-subheader>Otra categoría</md-subheader>  
+	      	<md-item >
+		        <a ui-sref="{{item.link}}">
+		          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+		            <div class="inset">
+		              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+		            </div>
+		            <div class="inset">{{item.title}}
+		            </div>
+		          </md-item-content>
+		        </a>
+		     </md-item>
+		</md-list>
+	</ul>
+</md-sidenav>
+
+<div layout="column" class="relative" layout-fill role="main">
+	<md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar md-default-theme">
+		<div class="md-toolbar-tools" >
+	      	<md-button ng-click="nav.showMenu('left')"
+	      		aria-label="Menu"
+	      		hide-gt-md >
+	        		<md-icon md-svg-icon=""></md-icon>
+	      	</md-button>
+	      	<h3>
+	        	Nombre 
+	      	</h3>
+	    </div>
+	</md-toolbar>
+	<md-content flex md-scroll-y>
+		<ui-view layout="column" layout-fill layout-padding></ui-view>
+	</md-content>
+</div>

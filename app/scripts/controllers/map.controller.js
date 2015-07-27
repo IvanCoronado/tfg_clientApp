@@ -3,21 +3,19 @@
 
     angular
         .module('dashboardApp')
-        .controller('dashboardCtrl', Controller);
+        .controller('mapCtrl', Controller);
 
-
+    
     /* @ngInject */
-    function Controller(initData) {
+    function Controller() {
         var vm = this;
-
-        vm.data = initData;
+        vm.title = 'Controller';
 
         activate();
 
         ////////////////
 
         function activate() {
-        	
         }
     }
 })();
