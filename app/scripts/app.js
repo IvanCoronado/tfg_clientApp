@@ -16,9 +16,7 @@
             .primaryPalette('red')
             .accentPalette('orange');
 
-        //    
-        // Specify a font-icon style alias
-        $mdIconProvider.fontSet('fa', 'fontawesome');
+      
 
         //
 		// For any unmatched url, redirect to /
