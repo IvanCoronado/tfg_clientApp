@@ -28,6 +28,8 @@
 	        	}
 	        ];
 
+        
+
         ////////////////
          /**
          * Build handler to open/close a SideNav; 
@@ -35,7 +37,7 @@
         function buildToggler(navID) {
             var debounceFn =  $mdUtil.debounce(function(){
                 $mdSidenav(navID)
-                  .toggle()
+                  .toggle();
               },300);
             return debounceFn;
         }

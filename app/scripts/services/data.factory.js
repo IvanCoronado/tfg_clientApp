@@ -18,14 +18,14 @@
 
         ////////////////
         var devices =[];
-        var url =""
+        var url ="";
 
         function initDevices(){
 
         }
 
         function getAllDevices(userId,areaNameId){
-            var myUrl = server + "/users/"+userId+"/areas/"+areaNameId;
+            var myUrl = url + "/users/"+userId+"/areas/"+areaNameId;
 
             return $http({
                 url: myUrl,
@@ -34,18 +34,18 @@
                 .catch(enableUserAreaFailed);
 
             function enableUserAreaComplete(response) {
-                if(response.status == 200){
+                if(response.status === 200){
                     logger.success('Area habilitada.');
                 }
                 return response.data;
             }
 
             function enableUserAreaFailed(response) {
-                if(response.status == 401){
+                if(response.status === 401){
                     logger.error('No autorizado.');
-                }else if(response.status == 404){
+                }else if(response.status === 404){
                     logger.error('Parametros incorrectos.');
-                }else if(response.status == 409){
+                }else if(response.status === 409){
                     logger.error('AreaID repetida o incorrecta.');
                 }else{
                     logger.error('Ups, algo falló en el servidor.');
@@ -56,7 +56,7 @@
 
 
         function disableUserArea(userId,areaNameId){
-            var myUrl = server + "/users/"+userId+"/areas/"+areaNameId;
+            var myUrl = url + "/users/"+userId+"/areas/"+areaNameId;
 
             return $http({
                 url: myUrl,
@@ -65,18 +65,18 @@
                 .catch(disableUserAreaFailed);
 
             function disableUserAreaComplete(response) {
-                if(response.status == 200){
+                if(response.status === 200){
                     logger.success('Area deshabilitada.');
                 }
                 return response.data;
             }
 
             function disableUserAreaFailed(response) {
-                if(response.status == 401){
+                if(response.status === 401){
                     logger.error('No autorizado.');
-                }else if(response.status == 404){
+                }else if(response.status === 404){
                     logger.error('Parametros incorrectos.');
-                }else if(response.status == 409){
+                }else if(response.status === 409){
                     logger.error('AreaID repetida o incorrecta.');
                 }else{
                     logger.error('Ups, algo falló en el servidor.');
@@ -91,7 +91,7 @@
             }else{
                 logger.error('XHR Failed for '+calledFrom+'. #' + data.status + " " + data.statusText);
             }
-        };
+        }
 
     }
 })();

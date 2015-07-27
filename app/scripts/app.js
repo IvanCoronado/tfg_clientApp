@@ -9,15 +9,21 @@
         .config(config);
 
 	/* @ngInject */
-    function config($stateProvider, $urlRouterProvider, $mdThemingProvider) {
+    function config($stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider) {
 		//
         // Select color theme
         $mdThemingProvider.theme('default')
             .primaryPalette('red')
             .accentPalette('orange');
+
+        //    
+        // Specify a font-icon style alias
+        $mdIconProvider.fontSet('fa', 'fontawesome');
+
         //
 		// For any unmatched url, redirect to /
 		$urlRouterProvider.otherwise("/devices");
+
 		//
 		// Now set up the states
 		var app = {

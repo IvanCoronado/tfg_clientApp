@@ -20,7 +20,7 @@
             log     : $log.log
         };
         /////////////////////
-        function error(message, title) {
+        function error(message) {
             $mdToast.show(
               $mdToast.simple()
                 .content(message)
@@ -30,7 +30,7 @@
             $log.error("Error: " + message);
         }
 
-        function info(message, title) {
+        function info(message) {
             $mdToast.show(
               $mdToast.simple()
                 .content(message)
@@ -40,7 +40,7 @@
             $log.info("Info: " + message);
         }
 
-        function success(message, title) {
+        function success(message) {
             $mdToast.show(
               $mdToast.simple()
                 .content(message)
@@ -50,7 +50,7 @@
             $log.info("Success: " + message);
         }
 
-        function warning(message, title) {
+        function warning(message) {
             $mdToast.show(
               $mdToast.simple()
                 .content(message)
@@ -60,6 +60,6 @@
             $log.warn("Warning: " + message);
         }
 
-    };
+    }
 
 }( this.angular ));

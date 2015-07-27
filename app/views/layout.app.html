@@ -18,7 +18,7 @@
 		        <md-button class="menu-button" ui-sref-active="active" flex ui-sref="{{item.link}}" layout-fill ng-click=" nav.showMenu()">
 		          <md-item-content md-ink-ripple layout="row" layout-align="start space-around">
 		            <div class="inset">
-		              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+		              <md-icon md-font-set="fa-lg {{item.icon}}"></md-icon>
 		            </div>
 		            <div class="inset">{{item.title}}
 		            </div>
@@ -38,8 +38,9 @@
 		<div class="md-toolbar-tools" >
 	      	<md-button ng-click="nav.showMenu('left')"
 	      		aria-label="Menu"
-	      		hide-gt-md >
-	        		<md-icon md-svg-icon=""></md-icon>
+	      		hide-gt-md 
+	      		class="md-icon-button">
+	        		<md-icon md-font-set="fa fa-lg fa-bars"></md-icon>
 	      	</md-button>
 	      	<h3>
 	        	Nombre 
