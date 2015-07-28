@@ -13,8 +13,8 @@
 		//
         // Select color theme
         $mdThemingProvider.theme('default')
-            .primaryPalette('brown')
-            .accentPalette('light-green');
+            .primaryPalette('teal')
+            .accentPalette('amber');
 
       
 
