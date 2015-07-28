@@ -9,12 +9,12 @@
         .config(config);
 
 	/* @ngInject */
-    function config($stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider) {
+    function config($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 		//
         // Select color theme
         $mdThemingProvider.theme('default')
-            .primaryPalette('red')
-            .accentPalette('orange');
+            .primaryPalette('brown')
+            .accentPalette('light-green');
 
       
 
