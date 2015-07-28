@@ -11,15 +11,14 @@
 
 body {
   padding: 0;
+  overflow: hidden;
 }
 
+.ng-scope { height: 100%; }
 
 md-item .md-button.menu-button{
 	margin: 0;
 	overflow: inherit;
-	&.active{
-		color: #F44336;
-	}
 }
 
 .iconLogo{
@@ -28,3 +27,21 @@ md-item .md-button.menu-button{
 	color:white;
 	font-size: 3.7em !important;
 }
+
+
+/* Cards */
+md-card{
+	.header{
+		height: 90px;
+		background-color: #3F51B5;
+		color: white;
+	}
+	.iconDevice{
+		height:30px; 
+		width:30px;
+		color:white;
+		font-size: 2em !important;
+	}
+}
+
+/* END cards*/
