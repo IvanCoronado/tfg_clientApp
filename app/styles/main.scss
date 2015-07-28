@@ -28,10 +28,15 @@ md-item .md-button.menu-button{
 	font-size: 3.7em !important;
 }
 
-
+.background-grey{
+	background-color: #f6f6f6 ;
+}
+.background-hue1{
+	background-color: #009688 !important;
+	color: white !important;
+}
 /* Cards */
 md-card{
-	color: white;
 	&.button{
 		&:hover{
 			cursor:pointer;
@@ -40,40 +45,26 @@ md-card{
 
 	.header{
 		height: 70px;
-		
-		&.counter{
-			background-color: #2196F3;
-		}
-		&.temperature{
-			background-color: #F44336;
-		}
 	}
 	.iconDevice{
 		height:30px; 
 		width:30px;
-		color:white;
 		font-size: 2em !important;
 	}
 
-	.counter.square1{
-		background-color: #42A5F5;
-	}
-	.counter.square2{
-		background-color: #90CAF9;
-	}
-	.counter.square3{
-		background-color: #E3F2FD;
-	}
-
-	.temperature.square1{
-		background-color: #EF5350;
-	}
-	.temperature.square2{
-		background-color: #EF9A9A;
-	}
-	.temperature.square3{
-		background-color: #FFEBEE;
-	}
 }
 
+.counter{
+	color: #2196F3;
+}
+.temperature{
+	color: #F44336;
+}
+
+.plugged{
+	color: #4caf50;
+}
+.unplugged{
+	color: #f44336;
+}
 /* END cards*/
