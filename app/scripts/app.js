@@ -6,7 +6,13 @@
         	'ui.router',
             'ngMaterial'
         ])
-        .config(config);
+        .config(config)
+        .run(run);
+
+    /* @ngInject */
+    function run($rootScope) {
+      $rootScope.$on("$stateChangeError", console.log.bind(console));
+    }
 
 	/* @ngInject */
     function config($stateProvider, $urlRouterProvider, $mdThemingProvider) {
@@ -41,6 +47,15 @@
         			         }
         			    }
                     },
+                    detail = {
+                        name: 'app.detail',
+                        url: '/devices/{deviceId}',
+                        templateUrl: 'views/app.devices.detail.html',
+                        controller: 'deviceDetailCtrl as vm',
+                        resolve:{
+                          deviceId: getDeviceId
+                       }
+                    },
                     map = {
                         name: 'app.map',
                         url: '/map',
@@ -51,10 +66,16 @@
     
         $stateProvider.state(app)
 	        .state(devices)
+                .state(detail)
 	        .state(map);
 
 		
 	}
+
+    /* @ngInject */
+    function getDeviceId($stateParams){
+        return $stateParams.deviceId;
+    }
 
 })();
 

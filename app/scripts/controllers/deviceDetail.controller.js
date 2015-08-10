@@ -3,15 +3,14 @@
 
     angular
         .module('dashboardApp')
-        .controller('devicesCtrl', Controller);
+        .controller('deviceDetailCtrl', Controller);
 
 
     /* @ngInject */
-    function Controller(initData) {
+    function Controller(deviceId) {
         var vm = this;
 
-        vm.data = initData;
-
+        vm.deviceId = deviceId;
 
         activate();
 
