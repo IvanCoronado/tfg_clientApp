@@ -49,7 +49,7 @@
                         templateUrl: 'views/app.location.detail.html',
                         controller: 'locationDetailCtrl as vm',
                         resolve:{
-                          locationId: getLocationId
+                          initLocation: getLocation
                        }
                     },
                     map = {
@@ -74,8 +74,8 @@
     }
 
     /* @ngInject */
-    function getLocationId($stateParams){
-        return $stateParams.locationId;
+    function getLocation(DataService, $stateParams){
+        return DataService.getLocation($stateParams.locationId);
     }
 
 })();
