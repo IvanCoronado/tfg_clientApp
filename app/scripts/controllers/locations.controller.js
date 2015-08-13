@@ -9,7 +9,7 @@
     /* @ngInject */
     function Controller(initLocations) {
         var vm = this;
-        console.log(initLocations);
+        
         vm.locations = initLocations;
 
 

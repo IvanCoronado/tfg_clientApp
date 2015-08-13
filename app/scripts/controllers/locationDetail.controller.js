@@ -9,7 +9,7 @@
     /* @ngInject */
     function Controller(locationId) {
         var vm = this;
-
+        console.log(locationId);
         vm.locationId = locationId;
 
         activate();

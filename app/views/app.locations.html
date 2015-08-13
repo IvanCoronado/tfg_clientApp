@@ -3,15 +3,21 @@
       <md-subheader class="md-primary">Localizaciones</md-subheader>
       <md-list layout-padding>
       	<md-divider></md-divider>
-        <md-list-item class="md-3-line" ng-repeat="location in vm.locations">
+        <md-list-item class="md-3-line" ng-repeat="location in vm.locations track by $index">
 
-            <img ng-src="{{message.face}}" class="md-avatar" alt="{{message.who}}">
+            <img ui-sref="app.detail({ locationId: location.id })" ng-src="{{message.face}}" class="md-avatar" alt="{{message.who}}">
             <div class="md-list-item-text">
               <h3>{{location.name}}</h3>
-              <h4>{{location.address}}</h4>
+              <h4>{{location.city}}</h4>
               <p>
                 {{location.description}}
               </p>
+              </br>
+              <div layout="row" layout-wrap layout-align="space-around center">
+              	 <span style="min-width:150px;" ng-repeat="device in location.devices">
+              	 	{{device.type_name}}
+              	 </span>
+              </div>
             </div>
             <md-divider></md-divider>
         </md-list-item>
