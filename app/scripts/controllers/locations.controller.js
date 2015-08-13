@@ -3,14 +3,14 @@
 
     angular
         .module('dashboardApp')
-        .controller('devicesCtrl', Controller);
+        .controller('locationsCtrl', Controller);
 
 
     /* @ngInject */
-    function Controller(initData) {
+    function Controller(initLocations) {
         var vm = this;
-
-        vm.data = initData;
+        console.log(initLocations);
+        vm.locations = initLocations;
 
 
         activate();

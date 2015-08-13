@@ -3,14 +3,14 @@
 
     angular
         .module('dashboardApp')
-        .controller('deviceDetailCtrl', Controller);
+        .controller('locationDetailCtrl', Controller);
 
 
     /* @ngInject */
-    function Controller(deviceId) {
+    function Controller(locationId) {
         var vm = this;
 
-        vm.deviceId = deviceId;
+        vm.locationId = locationId;
 
         activate();
 

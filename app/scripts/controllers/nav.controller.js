@@ -15,9 +15,9 @@
         nav.menu = 
         	[
 	        	{
-              id: 'devices',
-	        		link : 'app.devices',
-			      	title: 'Dispositivos',
+              id: 'locations',
+	        		link : 'app.locations',
+			      	title: 'Localizaciones',
 			      	icon: 'fa fa-plug'
 	        	},
 	        	{

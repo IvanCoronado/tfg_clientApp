@@ -26,7 +26,7 @@
 
         //
 		// For any unmatched url, redirect to /
-		$urlRouterProvider.otherwise("/devices");
+		$urlRouterProvider.otherwise("/locations");
 
 		//
 		// Now set up the states
@@ -35,25 +35,21 @@
                 abstract: true,
                 templateUrl: 'views/layout.app.html'
             },
-                    devices = {
-                        name: 'app.devices',
-                        url: '/devices',
+                    locations = {
+                        name: 'app.locations',
+                        url: '/locations',
                         parent: app,
-                        templateUrl: 'views/app.devices.html',
-                        controller: 'devicesCtrl as vm',
-                        resolve:{
-        			    	initData:  function(){
-        			            return {value: 'todos!'};
-        			         }
-        			    }
+                        templateUrl: 'views/app.locations.html',
+                        controller: 'locationsCtrl as vm',
+                        resolve:{initLocations:initLocations}
                     },
                     detail = {
                         name: 'app.detail',
-                        url: '/devices/{deviceId}',
-                        templateUrl: 'views/app.devices.detail.html',
-                        controller: 'deviceDetailCtrl as vm',
+                        url: '/locations/{locationId:[0-9]{1,4}}',
+                        templateUrl: 'views/app.location.detail.html',
+                        controller: 'locationDetailCtrl as vm',
                         resolve:{
-                          deviceId: getDeviceId
+                          locationId: getLocationId
                        }
                     },
                     map = {
@@ -65,7 +61,7 @@
                     };
     
         $stateProvider.state(app)
-	        .state(devices)
+	        .state(locations)
                 .state(detail)
 	        .state(map);
 
@@ -73,8 +69,13 @@
 	}
 
     /* @ngInject */
-    function getDeviceId($stateParams){
-        return $stateParams.deviceId;
+    function initLocations(DataService){
+        return DataService.getLocations();
+    }
+
+    /* @ngInject */
+    function getLocationId($stateParams){
+        return $stateParams.locationId;
     }
 
 })();

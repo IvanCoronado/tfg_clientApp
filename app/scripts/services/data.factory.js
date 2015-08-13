@@ -9,88 +9,43 @@
 
     /* @ngInject */
     function DataService($http, $location, logger) {
-            
+        var server = "http://localhost:8080/0"
+
         var service = {
-            getAllDevices: getAllDevices,
+            getLocations: getLocations,
             
         };
         return service;
 
         ////////////////
-        var devices =[];
-        var url ="";
 
-        function initDevices(){
-
-        }
-
-        function getAllDevices(userId,areaNameId){
-            var myUrl = url + "/users/"+userId+"/areas/"+areaNameId;
+        function getLocations(userId,areaNameId){
+            var myUrl = server + "/locations";
 
             return $http({
                 url: myUrl,
-                method: 'PUT'
-              }).then(enableUserAreaComplete)
-                .catch(enableUserAreaFailed);
+                method: 'GET'
+              }).then(getLocationsComplete)
+                .catch(getLocationsFailed);
 
-            function enableUserAreaComplete(response) {
-                if(response.status === 200){
-                    logger.success('Area habilitada.');
-                }
+            function getLocationsComplete(response) {
                 return response.data;
             }
 
-            function enableUserAreaFailed(response) {
-                if(response.status === 401){
-                    logger.error('No autorizado.');
-                }else if(response.status === 404){
-                    logger.error('Parametros incorrectos.');
-                }else if(response.status === 409){
-                    logger.error('AreaID repetida o incorrecta.');
-                }else{
-                    logger.error('Ups, algo falló en el servidor.');
-                }     
-            }
-        }
-
-
-
-        function disableUserArea(userId,areaNameId){
-            var myUrl = url + "/users/"+userId+"/areas/"+areaNameId;
-
-            return $http({
-                url: myUrl,
-                method: 'DELETE'
-              }).then(disableUserAreaComplete)
-                .catch(disableUserAreaFailed);
-
-            function disableUserAreaComplete(response) {
-                if(response.status === 200){
-                    logger.success('Area deshabilitada.');
-                }
-                return response.data;
-            }
-
-            function disableUserAreaFailed(response) {
-                if(response.status === 401){
-                    logger.error('No autorizado.');
-                }else if(response.status === 404){
-                    logger.error('Parametros incorrectos.');
-                }else if(response.status === 409){
-                    logger.error('AreaID repetida o incorrecta.');
-                }else{
-                    logger.error('Ups, algo falló en el servidor.');
-                }     
+            function getLocationsFailed(response) {
+                errorHanlder(response);
             }
         }
 
 
         function errorHanlder(data, calledFrom){
-            if (data.status === 0) {
-                $location.path("/serverBusy");
+            if(response.status === 401){
+                logger.error('No autorizado.');
+            }else if(response.status === 400){
+                logger.error('Parametros incorrectos.');
             }else{
-                logger.error('XHR Failed for '+calledFrom+'. #' + data.status + " " + data.statusText);
-            }
+                logger.error('Ups, algo falló en el servidor.');
+            }     
         }
 
     }
