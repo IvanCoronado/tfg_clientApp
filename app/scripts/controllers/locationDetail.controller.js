@@ -11,7 +11,7 @@
         var vm = this;
         
         vm.locationId = initLocation;
-
+        console.log(initLocation);
         activate();
 
         ////////////////

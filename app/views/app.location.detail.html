@@ -1,3 +1,262 @@
-<pre>
-  {{vm.locationId | json}}
-</pre>
+<md-card flex-gt-sm="100" flex-gt-md="70" >
+	<h2>¡Última hora!</h2>
+	<div layout="row" layout-wrap layout-align="center center">
+		<c3chart bindto-id="counter-summary" flex flex-sm="60">
+		  <chart-column column-id="Asistentes"
+		              column-values="30"
+		              column-type="gauge"/>
+		  <chart-gauge min="0"
+		            max="70"
+		            units=" aforo"
+		            width="39"/>
+		</c3chart>
+
+		<div layout-align="center center" flex flex-sm="20" style="text-align:center">25ºC</div>
+		<div layout-align="center center" flex flex-sm="20" style="text-align:center">20% Humedad</div>
+	</div>
+</md-card>
+<md-card flex-gt-sm="100" flex-gt-md="70" >
+	<h2>Información</h2>
+	<div layout-gt-md="row">
+		<div flex>
+			<h4>Nombre:</h4>
+			<p class="md-padding">{{vm.locationId.name}}</p>
+			<h4>Localización:</h4>
+			<p class="md-padding">{{vm.locationId.city}}</p>
+			<h4>Descripcción:</h4>
+			<p class="md-padding">{{vm.locationId.description}}</p>
+		</div>
+		<div flex>
+			<h4>Fecha de alta:</h4>
+			<p class="md-padding">10-8-2015</p>
+			<h4>Última actualización:</h4>
+			<p class="md-padding">18-8-2015</p>
+			<h4>Dueño:</h4>
+			<p class="md-padding">Iván</p>
+		</div>
+	</div>
+	
+	
+	
+
+</md-card>
+
+<div layout-gt-lg="row">
+	<md-card flex-gt-sm="100" flex-gt-lg="48" class="md-padding">
+		<h2>Aforo del día</h2>
+		<div layout="row" layout-wrap layout-align="center center">
+			<c3chart bindto-id="counter-historic-day" flex>
+			  <chart-column column-id="x"
+			          column-values="8:00,9:00,10:00,11:00,12:00,13:00,14:00,15:00"/>
+			  <chart-column column-id="Aforo"
+			            column-color="blue"
+			            column-values="10,35,30,42,63,40,0"
+			          column-type="spline"/>
+
+			  <chart-axes values-x="x" y="Aforo" />                 
+			   
+			  <chart-axis>
+			    <chart-axis-x axis-position="outer-center"
+			                  axis-type="category">
+			          <chart-axis-x-tick tick-rotate="50"/>
+			    </chart-axis-x>
+
+			    <chart-axis-y axis-id="y"
+			                  axis-position="outer-right"
+			                  axis-label="Personas"
+			                  padding-top="100"
+			                  padding-bottom="0"
+			                  range-min="70"/>
+			   
+			  </chart-axis>
+			 
+			  <chart-grid show-x="false" show-y="true">
+			
+			  </chart-grid>
+			 
+			</c3chart>
+		</div>
+	</md-card>
+
+	<md-card flex-gt-sm="100" flex-gt-lg="48" class="md-padding">
+		<h2>Comparativa aforo por semana</h2>
+		<div layout="row" layout-wrap layout-align="center center">
+			<c3chart bindto-id="counter-historic-week" flex>
+			  <chart-column column-id="x"
+			          column-values="8:00,9:00,10:00,11:00,12:00,13:00,14:00,15:00"/>
+		
+			   	<chart-column column-id="Viernes"
+			            column-name="Viernes"
+			            column-color="purple"
+			            column-values="8,22,24,15,17,6,0"
+			          column-type="spline"/>   
+				<chart-column column-id="Jueves"
+			            column-name="Jueves"
+			            column-color="orange"
+			            column-values="10,42,44,42,55,40,0"
+			          column-type="spline"/>
+			   	<chart-column column-id="Miercoles"
+			            column-name="Miercoles"
+			            column-color="green"
+			            column-values="20,45,52,56,70,42,0"
+			          column-type="spline"/>   
+			   	<chart-column column-id="Martes"
+			            column-name="Martes"
+			            column-color="blue"
+			            column-values="10,35,30,42,63,40,0"
+			          column-type="spline"/>
+			   	<chart-column column-id="Lunes"
+			            column-name="Lunes"
+			            column-color="red"
+			            column-values="12,38,24,56,70,55,0"
+			          column-type="spline"/>     
+
+			  <chart-axes values-x="x" y="Lunes" />                 
+			   
+			  <chart-axis>
+			    <chart-axis-x axis-position="outer-center"
+			                  axis-type="category">
+			          <chart-axis-x-tick tick-rotate="50"/>
+			    </chart-axis-x>
+
+			    <chart-axis-y axis-id="y"
+			                  axis-position="outer-right"
+			                  axis-label="Personas"
+			                  padding-top="100"
+			                  padding-bottom="0"
+			                  range-min="70"/>
+			   
+			  </chart-axis>
+			 
+			    <chart-grid show-x="false" show-y="true">
+			    <chart-grid-optional axis-id="x" grid-value="1" grid-text="Start"/>
+			  </chart-grid>
+			 
+			</c3chart>
+		</div>
+	</md-card>
+</div>
+
+<div layout-gt-lg="row">
+	<md-card flex-gt-sm="100" flex-gt-lg="48" class="md-padding">
+		<h2>Temperatura del día</h2>
+		<div layout="row" layout-wrap layout-align="center center">
+			<c3chart bindto-id="temperature-historic-day" flex>
+			  <chart-column column-id="x"
+			          column-values="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23"/>
+			  <chart-column column-id="temperature"
+			  			column-name="Temperatura"
+			            column-color="blue"
+			            column-values="3,3,4,4,5,6,9,10,12,16,17,20,22,24,24,23,25,27,24,23,22,19,18"
+			          column-type="spline"/>
+
+			  <chart-axes values-x="x" y="temperature" />                 
+			   
+			  <chart-axis>
+			    <chart-axis-x axis-position="outer-center"
+			                  axis-type="category">
+			    
+			    </chart-axis-x>
+
+			 
+			  <chart-grid show-x="false" show-y="true">
+			
+			  </chart-grid>
+			 
+			</c3chart>
+		</div>
+	</md-card>
+
+	<md-card flex-gt-sm="100" flex-gt-lg="48" class="md-padding">
+		<h2>Comparativa de la temperatura en la semana</h2>
+		<div layout="row" layout-wrap layout-align="center center">
+			<c3chart bindto-id="temperature-historic-week">
+			  <chart-column column-id="x"
+			          column-values="Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,Domingo"/>
+			  <chart-column column-id="temperature-max"
+			            column-name="Máxima"
+			            column-color="red"
+			          column-values="24,25,28,23,22,20,18"
+			          column-type="bar"/>
+	          <chart-column column-id="temperature-min"
+			            column-name="Mínima"
+			            column-color="blue"
+			          column-values="12,11,13,10,9,8,7"
+			          column-type="bar"/>
+
+			   <chart-axes values-x="x" y="temperature-max,temperature-min"/>
+
+			  	<chart-axis>
+				    <chart-axis-x axis-position="outer-center"
+				                  axis-type="category">
+				          <chart-axis-x-tick />
+				      </chart-axis-x>
+				  </chart-axis>
+			</c3chart>
+		</div>
+	</md-card>
+</div>
+
+
+
+<div layout-gt-lg="row">
+	<md-card flex-gt-sm="100" flex-gt-lg="48" class="md-padding">
+		<h2>Humedad del día</h2>
+		<div layout="row" layout-wrap layout-align="center center">
+			<c3chart bindto-id="humidity-historic-day" flex>
+			  <chart-column column-id="x"
+			          column-values="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23"/>
+			  <chart-column column-id="humidity"
+			  			column-name="Humedad"
+			            column-color="blue"
+			            column-values="3,3,4,4,5,6,9,10,12,16,17,20,22,24,24,23,25,27,24,23,22,19,18"
+			          column-type="spline"/>
+
+			  <chart-axes values-x="x" y="humidity" />                 
+			   
+			  <chart-axis>
+			    <chart-axis-x axis-position="outer-center"
+			                  axis-type="category">
+			    
+			    </chart-axis-x>
+
+			 
+			  <chart-grid show-x="false" show-y="true">
+			
+			  </chart-grid>
+			 
+			</c3chart>
+		</div>
+	</md-card>
+
+	<md-card flex-gt-sm="100" flex-gt-lg="48" class="md-padding">
+		<h2>Comparativa de la humedad en la semana</h2>
+		<div layout="row" layout-wrap layout-align="center center">
+			<c3chart bindto-id="humidity-historic-week">
+			  <chart-column column-id="x"
+			          column-values="Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,Domingo"/>
+			  <chart-column column-id="humidity-max"
+			            column-name="Máxima"
+			            column-color="red"
+			          column-values="24,25,28,23,22,20,18"
+			          column-type="bar"/>
+	          <chart-column column-id="humidity-min"
+			            column-name="Mínima"
+			            column-color="blue"
+			          column-values="12,11,13,10,9,8,7"
+			          column-type="bar"/>
+
+			   <chart-axes values-x="x" y="humidity-max,humidity-min"/>
+
+			  	<chart-axis>
+				    <chart-axis-x axis-position="outer-center"
+				                  axis-type="category">
+				          <chart-axis-x-tick />
+				      </chart-axis-x>
+				  </chart-axis>
+			</c3chart>
+		</div>
+	</md-card>
+</div>
+
+

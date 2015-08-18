@@ -4,7 +4,8 @@
     angular
         .module('dashboardApp', [
         	'ui.router',
-            'ngMaterial'
+            'ngMaterial',
+            'gridshore.c3js.chart'
         ])
         .config(config)
         .run(run);
