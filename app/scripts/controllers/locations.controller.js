@@ -12,13 +12,5 @@
         
         vm.locations = initLocations;
 
-
-        activate();
-
-        ////////////////
-
-        function activate() {
-        	
-        }
     }
 })();

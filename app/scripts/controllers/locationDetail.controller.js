@@ -7,17 +7,23 @@
 
 
     /* @ngInject */
-    function Controller(initLocation) {
+    function Controller(DataService, lodash, initLocation) {
         var vm = this;
         
         vm.locationId = initLocation;
         console.log(initLocation);
-        activate();
+        vm.status = [];
 
+        updateStatus();
         ////////////////
 
-        function activate() {
-        	
+        function updateStatus() {
+        	lodash.forEach(vm.locationId.devices, function(device) {
+                DataService.getDeviceStatus(device.id).then(function(response){
+                    vm.status.unshift(response);
+                });
+
+            });
         }
     }
 })();

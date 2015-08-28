@@ -5,7 +5,8 @@
         .module('dashboardApp', [
         	'ui.router',
             'ngMaterial',
-            'gridshore.c3js.chart'
+            'gridshore.c3js.chart',
+            'ngLodash'
         ])
         .config(config)
         .run(run);
@@ -59,12 +60,20 @@
                         parent: app,
                         templateUrl: 'views/app.map.html',
                         controller: 'mapCtrl as vm'
+                    },
+                    registerLocation = {
+                        name: 'app.registerLocation',
+                        url: '/registerLocation',
+                        parent: app,
+                        templateUrl: 'views/app.registerLocation.html',
+                        controller: 'registerLocationCtrl as vm'
                     };
     
         $stateProvider.state(app)
 	        .state(locations)
                 .state(detail)
-	        .state(map);
+	        .state(map)
+            .state(registerLocation);
 
 		
 	}

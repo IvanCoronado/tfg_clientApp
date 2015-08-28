@@ -1,9 +1,10 @@
+<pre>{{ vm.status | json }}</pre>
 <md-card flex-gt-sm="100" flex-gt-md="70" >
-	<h2>¡Última hora!</h2>
+	<h2>Última hora (19/08/2015 @ 15:55)</h2>
 	<div layout="row" layout-wrap layout-align="center center">
 		<c3chart bindto-id="counter-summary" flex flex-sm="60">
 		  <chart-column column-id="Asistentes"
-		              column-values="30"
+		              column-values="{{vm.status[0].devices[0].value}}"
 		              column-type="gauge"/>
 		  <chart-gauge min="0"
 		            max="70"
@@ -29,10 +30,6 @@
 		<div flex>
 			<h4>Fecha de alta:</h4>
 			<p class="md-padding">10-8-2015</p>
-			<h4>Última actualización:</h4>
-			<p class="md-padding">18-8-2015</p>
-			<h4>Dueño:</h4>
-			<p class="md-padding">Iván</p>
 		</div>
 	</div>
 	

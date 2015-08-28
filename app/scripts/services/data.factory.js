@@ -9,11 +9,12 @@
 
     /* @ngInject */
     function DataService($http, $location, logger) {
-        var server = "http://localhost:8080/0"
+        var server = "http://localhost:8080/0";
 
         var service = {
             getLocations: getLocations,
-            getLocation: getLocation
+            getLocation: getLocation,
+            getDeviceStatus: getDeviceStatus
         };
         return service;
 
@@ -55,8 +56,26 @@
             }
         }
 
+        function getDeviceStatus(deviceId){
+            var myUrl = server + "/devices/"+deviceId+"/status";
 
-        function errorHanlder(data, calledFrom){
+            return $http({
+                url: myUrl,
+                method: 'GET'
+              }).then(getDeviceStatusComplete)
+                .catch(getDeviceStatusFailed);
+
+            function getDeviceStatusComplete(response) {
+                return response.data;
+            }
+
+            function getDeviceStatusFailed(response) {
+                errorHanlder(response);
+            }
+        }
+
+
+        function errorHanlder(response){
             if(response.status === 401){
                 logger.error('No autorizado.');
             }else if(response.status === 400){

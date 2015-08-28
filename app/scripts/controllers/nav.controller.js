@@ -25,13 +25,19 @@
 	        		link : 'app.map',
 			      	title: 'Mapa',
 			      	icon: 'fa fa-map-marker'
-	        	}
+	        	},
+            {
+              id: 'registerLocation',
+              link : 'app.registerLocation',
+              title: 'Dar de alta localización',
+              icon: 'fa fa-location-arrow'
+            }
 	        ];
 
         
 
         ////////////////
-         /**
+        /**
          * Build handler to open/close a SideNav; 
          */
         function buildToggler(navID) {
