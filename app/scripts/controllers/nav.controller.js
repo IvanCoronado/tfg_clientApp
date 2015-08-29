@@ -7,10 +7,13 @@
 
 
     /* @ngInject */
-    function Controller($mdSidenav, $mdUtil) {
+    function Controller($scope, $mdSidenav, $mdUtil, userService) {
         var nav = this;
 
+        $scope.$on('userLogged', function(event, data) { console.log("aqui!"); nav.someoneLogged = userService.isLogged(); });
+
         nav.showMenu = buildToggler('left');
+        
 
         nav.menuPublic = [{
                 id: 'home',

@@ -26,6 +26,7 @@ module.exports = function(config) {
       'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-aria/angular-aria.js',
       'bower_components/angular-material/angular-material.js',
+      'bower_components/angular-messages/angular-messages.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/d3/d3.js',
       'bower_components/c3/c3.js',

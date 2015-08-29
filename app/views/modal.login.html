@@ -1,0 +1,39 @@
+<md-dialog aria-label="Edit user" flex-sm="100" flex-gt-sm="90" flex-gt-md="60" flex-gt-lg="40" >
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Login</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="cerrar" ng-click="vm.cancel()">
+            <i class="fa fa-close"></i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-content  layout="column" layout-align="center center" class="md-padding">
+      <form name="profileForm" layout-fill >
+          <md-input-container flex>
+            <label>Nombre de usuario</label>
+            <input name="username" required md-maxlength="15" ng-model="vm.user.username">
+            <div ng-messages="profileForm.username.$error">
+              <div ng-message="required">Campo obligat&oacute;rio.</div>
+              <div ng-message="md-maxlength">No puede tener m&aacute;s de 15 car&aacute;cteres.</div>
+            </div>
+          </md-input-container>
+ 
+          <md-input-container flex>
+            <label>Contraseña</label>
+            <input  type="password" name="password"
+                    ng-model="vm.user.password" 
+                    required 
+                    md-maxlength="10">
+            <div ng-messages="profileForm.password.$error">
+                <div ng-message="required">Campo obligat&oacute;rio.</div>
+                <div ng-message="md-maxlength">No puede tener m&aacute;s de 10 car&aacute;cteres.</div>
+            </div>
+          </md-input-container>
+          
+          </br>
+          <md-button class="md-raised" ng-click="vm.answer(profileForm)">Crear</md-button>
+          <span ng-click="vm.cancel()"><md-button class="" >Cancelar</md-button></span>          
+      </form >
+    </md-content>
+</md-dialog>

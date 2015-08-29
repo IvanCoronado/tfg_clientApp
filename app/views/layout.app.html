@@ -1,80 +1,68 @@
 <div layout="row" ng-controller="navCtrl as nav" layout-fill>
-	<md-sidenav 
-		layout="column" 
-		class="md-sidenav-left md-whiteframe-z2 sticky" 
-		md-component-id="left" 
-		md-is-locked-open="$mdMedia('gt-md')">
-			<md-toolbar class="md-tall">
-		        <md-icon md-font-set="iconLogo fa-4x fa fa-connectdevelop"></md-icon>
-		    </md-toolbar>
-
-			<md-list layout="column" >
-				<md-subheader>General</md-subheader>
-				<md-item flex ng-repeat="item in nav.menuPublic track by $index" >
-			        <md-button class="menu-button" ui-sref-active="md-primary" flex ui-sref="{{item.link}}" layout-fill ng-click=" nav.showMenu()">
-			          <md-item-content md-ink-ripple layout="row" layout-align="start space-around">
-			            <div class="inset">
-			              <md-icon md-font-set="fa-lg {{item.icon}}"></md-icon>
-			            </div>
-			            <div class="inset">{{item.title}}
-			            </div>
-			          </md-item-content>
-			        </md-button>
-			     </md-item>
-
-				<md-divider></md-divider>
-
-		      	<md-subheader>Perfil</md-subheader> 
-		      	<md-item flex ng-repeat="item in nav.menuPrivate track by $index" >
-			        <md-button class="menu-button" ui-sref-active="md-primary" flex ui-sref="{{item.link}}" layout-fill ng-click=" nav.showMenu()">
-			          <md-item-content md-ink-ripple layout="row" layout-align="start space-around">
-			            <div class="inset">
-			              <md-icon md-font-set="fa-lg {{item.icon}}"></md-icon>
-			            </div>
-			            <div class="inset">{{item.title}}
-			            </div>
-			          </md-item-content>
-			        </md-button>
-			     </md-item> 
-
-			     <md-divider></md-divider>
-			     <md-subheader>Sobre mí</md-subheader>
-			     <md-item flex ng-repeat="item in nav.menuAboutMe track by $index" >
-			        <md-button class="menu-button" ui-sref-active="md-primary" aria-label="{{item.id}}" flex ng-href="{{item.link}}" layout-fill target="_blank">
-			          <md-item-content md-ink-ripple layout="row" layout-align="start space-around">
-			            <div class="inset">
-			              <md-icon md-font-set="fa-lg {{item.icon}}"></md-icon>
-			            </div>
-			            <div class="inset">{{item.title}}
-			            </div>
-			          </md-item-content>
-			        </md-button>
-			     </md-item> 
-
-			</md-list>
-	</md-sidenav>
-	<div layout="column" class="relative" layout-fill role="main">
-		<md-toolbar class="md-whiteframe-glow-z2 site-content-toolbar md-default-theme">
-			<div class="md-toolbar-tools" >
-		      	<md-button ng-click="nav.showMenu('left')"
-		      		aria-label="Menu"
-		      		hide-gt-md 
-		      		class="md-icon-button">
-		        		<md-icon md-font-set="fa fa-lg fa-bars"></md-icon>
-		      	</md-button>
-		      	<h3>
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2 sticky" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+        <md-toolbar class="md-tall">
+            <md-icon md-font-set="iconLogo fa-4x fa fa-connectdevelop"></md-icon>
+        </md-toolbar>
+        <md-list layout="column">
+            <md-subheader>General</md-subheader>
+            <md-item flex ng-repeat="item in nav.menuPublic track by $index">
+                <md-button class="menu-button" ui-sref-active="md-primary" flex ui-sref="{{item.link}}" layout-fill ng-click=" nav.showMenu()">
+                    <md-item-content md-ink-ripple layout="row" layout-align="start space-around">
+                        <div class="inset">
+                            <md-icon md-font-set="fa-lg {{item.icon}}"></md-icon>
+                        </div>
+                        <div class="inset">{{item.title}}
+                        </div>
+                    </md-item-content>
+                </md-button>
+            </md-item>
+            <div ng-if="nav.someoneLogged">
+                <md-divider></md-divider>
+                <md-subheader>Perfil</md-subheader>
+                <md-item flex ng-repeat="item in nav.menuPrivate track by $index">
+                    <md-button class="menu-button" ui-sref-active="md-primary" flex ui-sref="{{item.link}}" layout-fill ng-click=" nav.showMenu()">
+                        <md-item-content md-ink-ripple layout="row" layout-align="start space-around">
+                            <div class="inset">
+                                <md-icon md-font-set="fa-lg {{item.icon}}"></md-icon>
+                            </div>
+                            <div class="inset">{{item.title}}
+                            </div>
+                        </md-item-content>
+                    </md-button>
+                </md-item>
+            </div>
+            <md-divider></md-divider>
+            <md-subheader>Sobre mí</md-subheader>
+            <md-item flex ng-repeat="item in nav.menuAboutMe track by $index">
+                <md-button class="menu-button" ui-sref-active="md-primary" aria-label="{{item.id}}" flex ng-href="{{item.link}}" layout-fill target="_blank">
+                    <md-item-content md-ink-ripple layout="row" layout-align="start space-around">
+                        <div class="inset">
+                            <md-icon md-font-set="fa-lg {{item.icon}}"></md-icon>
+                        </div>
+                        <div class="inset">{{item.title}}
+                        </div>
+                    </md-item-content>
+                </md-button>
+            </md-item>
+        </md-list>
+    </md-sidenav>
+    <div layout="column" class="relative" layout-fill role="main">
+        <md-toolbar class="md-whiteframe-glow-z2 site-content-toolbar md-default-theme">
+            <div class="md-toolbar-tools">
+                <md-button ng-click="nav.showMenu('left')" aria-label="Menu" hide-gt-md class="md-icon-button">
+                    <md-icon md-font-set="fa fa-lg fa-bars"></md-icon>
+                </md-button>
+                <h3>
 		        	Nombre 
 		      	</h3>
-		      	<span flex></span>
-		        <md-button class="md-icon-button" aria-label="login" target="_blank" nui-sref="{{item.link}}">
-		          <md-icon md-font-set="fa-lg fa fa-sign-in" ></md-icon>
-		        </md-button>
-			</div>
-
-		</md-toolbar>
-		<md-content flex md-scroll-y class="background-grey">
-			<ui-view layout="column" layout-fill layout-padding></ui-view>
-		</md-content>
-	</div>
-
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="login" ui-sref="app.modalLogin">
+                    <md-icon md-font-set="fa-lg fa fa-sign-in"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content flex md-scroll-y class="background-grey">
+            <ui-view layout="column" layout-fill layout-padding></ui-view>
+        </md-content>
+    </div>
 </div>

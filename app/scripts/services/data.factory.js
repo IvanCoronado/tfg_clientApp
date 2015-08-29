@@ -14,7 +14,9 @@
         var service = {
             getLocations: getLocations,
             getLocation: getLocation,
-            getDeviceStatus: getDeviceStatus
+            getDeviceStatus: getDeviceStatus,
+            getClient: getClient
+
         };
         return service;
 
@@ -74,6 +76,23 @@
             }
         }
 
+        function getClient(idClient){
+            var myUrl = server + "/clients/" + idClient.username;
+
+            return $http({
+                url: myUrl,
+                method: 'GET'
+              }).then(getClientComplete)
+                .catch(getClientFailed);
+
+            function getClientComplete(response) {
+                return response.data;
+            }
+
+            function getClientFailed(response) {
+                errorHanlder(response);
+            }
+        }
 
         function errorHanlder(response){
             if(response.status === 401){
