@@ -37,12 +37,20 @@
                 abstract: true,
                 templateUrl: 'views/layout.app.html'
             },
+                    home={
+                        name: 'app.home',
+                        url: '/home',
+                        parent: app,
+                        templateUrl: 'views/app.home.html',
+                        module: 'public'
+                    },
                     locations = {
                         name: 'app.locations',
                         url: '/locations',
                         parent: app,
                         templateUrl: 'views/app.locations.html',
                         controller: 'locationsCtrl as vm',
+                        module: 'public',
                         resolve:{initLocations:initLocations}
                     },
                     detail = {
@@ -50,30 +58,34 @@
                         url: '/locations/{locationId:[0-9]{1,4}}',
                         templateUrl: 'views/app.location.detail.html',
                         controller: 'locationDetailCtrl as vm',
+                        module: 'public',
                         resolve:{
                           initLocation: getLocation
                        }
                     },
-                    map = {
-                        name: 'app.map',
-                        url: '/map',
+                    myProfile = {
+                        name: 'app.myProfile',
+                        url: '/myprofile',
                         parent: app,
-                        templateUrl: 'views/app.map.html',
-                        controller: 'mapCtrl as vm'
+                        templateUrl: 'views/app.myProfile.html',
+                        controller: 'myProfileCtrl as vm',
+                        module: 'private'
                     },
-                    registerLocation = {
-                        name: 'app.registerLocation',
-                        url: '/registerLocation',
+                    myLocations = {
+                        name: 'app.myLocations',
+                        url: '/myLocations',
                         parent: app,
-                        templateUrl: 'views/app.registerLocation.html',
-                        controller: 'registerLocationCtrl as vm'
+                        module: 'private',
+                        templateUrl: 'views/app.myLocations.html',
+                        controller: 'myLocationsCtrl as vm'
                     };
     
         $stateProvider.state(app)
+            .state(home)
 	        .state(locations)
                 .state(detail)
-	        .state(map)
-            .state(registerLocation);
+	        .state(myProfile)
+            .state(myLocations);
 
 		
 	}

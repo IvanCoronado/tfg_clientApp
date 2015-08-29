@@ -3,7 +3,7 @@
 
     angular
         .module('dashboardApp')
-        .controller('registerLocationCtrl', Controller);
+        .controller('myLocationsCtrl', Controller);
 
     
     /* @ngInject */

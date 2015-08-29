@@ -3,7 +3,7 @@
 
     angular
         .module('dashboardApp')
-        .controller('mapCtrl', Controller);
+        .controller('myProfileCtrl', Controller);
 
     
     /* @ngInject */

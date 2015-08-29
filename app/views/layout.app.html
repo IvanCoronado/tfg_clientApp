@@ -9,8 +9,8 @@
 		    </md-toolbar>
 
 			<md-list layout="column" >
-				<md-subheader>Menu</md-subheader>
-				<md-item flex ng-repeat="item in nav.menu track by $index" >
+				<md-subheader>General</md-subheader>
+				<md-item flex ng-repeat="item in nav.menuPublic track by $index" >
 			        <md-button class="menu-button" ui-sref-active="md-primary" flex ui-sref="{{item.link}}" layout-fill ng-click=" nav.showMenu()">
 			          <md-item-content md-ink-ripple layout="row" layout-align="start space-around">
 			            <div class="inset">
@@ -24,7 +24,33 @@
 
 				<md-divider></md-divider>
 
-		      	<md-subheader>Otra categoría</md-subheader>  
+		      	<md-subheader>Perfil</md-subheader> 
+		      	<md-item flex ng-repeat="item in nav.menuPrivate track by $index" >
+			        <md-button class="menu-button" ui-sref-active="md-primary" flex ui-sref="{{item.link}}" layout-fill ng-click=" nav.showMenu()">
+			          <md-item-content md-ink-ripple layout="row" layout-align="start space-around">
+			            <div class="inset">
+			              <md-icon md-font-set="fa-lg {{item.icon}}"></md-icon>
+			            </div>
+			            <div class="inset">{{item.title}}
+			            </div>
+			          </md-item-content>
+			        </md-button>
+			     </md-item> 
+
+			     <md-divider></md-divider>
+			     <md-subheader>Sobre mí</md-subheader>
+			     <md-item flex ng-repeat="item in nav.menuAboutMe track by $index" >
+			        <md-button class="menu-button" ui-sref-active="md-primary" aria-label="{{item.id}}" flex ng-href="{{item.link}}" layout-fill target="_blank">
+			          <md-item-content md-ink-ripple layout="row" layout-align="start space-around">
+			            <div class="inset">
+			              <md-icon md-font-set="fa-lg {{item.icon}}"></md-icon>
+			            </div>
+			            <div class="inset">{{item.title}}
+			            </div>
+			          </md-item-content>
+			        </md-button>
+			     </md-item> 
+
 			</md-list>
 	</md-sidenav>
 	<div layout="column" class="relative" layout-fill role="main">
@@ -40,11 +66,8 @@
 		        	Nombre 
 		      	</h3>
 		      	<span flex></span>
-		        <md-button class="md-icon-button" aria-label="linkedin" target="_blank" ng-href="https://es.linkedin.com/pub/ivan-coronado-moreno/99/9b5/683">
-		          <md-icon md-font-set="fa-lg fa fa-linkedin" ></md-icon>
-		        </md-button>
-		        <md-button class="md-icon-button" aria-label="github" target="_blank" ng-href="https://github.com/IvanCoronado">
-		          <md-icon md-font-set="fa fa-lg fa-github-alt" ></md-icon>
+		        <md-button class="md-icon-button" aria-label="login" target="_blank" nui-sref="{{item.link}}">
+		          <md-icon md-font-set="fa-lg fa fa-sign-in" ></md-icon>
 		        </md-button>
 			</div>
 
