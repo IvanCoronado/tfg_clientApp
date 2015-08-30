@@ -95,7 +95,10 @@
                 parent: app,
                 templateUrl: 'views/app.myProfile.html',
                 controller: 'myProfileCtrl as vm',
-                module: 'private'
+                module: 'private',
+                resolve: {
+                    initUser: initUser
+                }
             },
             myLocations = {
                 name: 'app.myLocations',
@@ -211,6 +214,11 @@
     /* @ngInject */
     function getLocation(DataService, $stateParams) {
         return DataService.getLocation($stateParams.locationId);
+    }
+
+    /* @ngInject */
+    function initUser(userService) {
+        return userService.getUser();
     }
 
 })();

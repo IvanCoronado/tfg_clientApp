@@ -12,8 +12,10 @@
         var service = {
             login: login,
             register: register,
+            updateData: updateData,
             isLogged: isLogged,
-            logout: logout
+            logout: logout,
+            getUser: getUser
         };
         return service;
 
@@ -39,12 +41,25 @@
             return isLogged();
         }
 
+        function updateData(client){
+            DataService.putClient(client).then(function(response){
+                if(typeof response !== 'undefined'){
+                    user = response;
+                }
+            });
+            
+        }
         function isLogged() {
             return user !== null;
         }
 
         function logout() {
             user = null;
+        }
+
+        function getUser(){
+            console.log(user);
+            return user;
         }
 
 

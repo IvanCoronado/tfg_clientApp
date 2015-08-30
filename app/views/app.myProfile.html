@@ -1,3 +1,24 @@
-<md-card flex-gt-sm="100" flex-gt-md="70" >
-	mi perfil
+<md-card flex-gt-sm="100" flex-gt-md="70">
+    <md-content layout="column" layout-align="center center" class="md-padding">
+        <form name="profileForm" layout-fill>
+            <md-input-container flex>
+                <label>Nombre de usuario</label>
+                <input name="username" required md-maxlength="15" ng-model="vm.user.name">
+                <div ng-messages="profileForm.username.$error">
+                    <div ng-message="required">Campo obligat&oacute;rio.</div>
+                    <div ng-message="md-maxlength">No puede tener m&aacute;s de 15 car&aacute;cteres.</div>
+                </div>
+            </md-input-container>
+            <md-input-container flex>
+                <label>Descripcci&oacute;n</label>
+                <textarea type="description" name="description" ng-model="vm.user.description" md-maxlength="150"></textarea>
+                <div ng-messages="profileForm.password.$error">
+                    <div ng-message="required">Campo obligat&oacute;rio.</div>
+                    <div ng-message="md-maxlength">No puede tener m&aacute;s de 10 car&aacute;cteres.</div>
+                </div>
+            </md-input-container>
+            </br>
+            <md-button class="md-raised" ng-click="vm.updateUser(profileForm)">Modificar</md-button>
+        </form>
+    </md-content>
 </md-card>

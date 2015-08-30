@@ -5,18 +5,18 @@
         .module('dashboardApp')
         .controller('myProfileCtrl', Controller);
 
-    
+
     /* @ngInject */
-    function Controller() {
+    function Controller(initUser, userService) {
         var vm = this;
-        vm.title = 'Controller';
+        vm.user = initUser;
+        vm.updateUser = updateUser;
 
-        activate();
-
-        ////////////////
-
-        function activate() {
+        function updateUser(errors) {
+            if (errors.$valid === true) {
+                userService.updateData(vm.user);
+            }
         }
+
     }
 })();
-

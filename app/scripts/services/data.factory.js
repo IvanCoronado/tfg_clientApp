@@ -16,8 +16,8 @@
             getLocation: getLocation,
             getDeviceStatus: getDeviceStatus,
             getClient: getClient,
-            postClient: postClient
-
+            postClient: postClient,
+            putClient: putClient
         };
         return service;
 
@@ -129,6 +129,33 @@
                 
             }
 
+        }
+
+        function putClient (client) {
+            var myUrl = server + "/clients/" + client.id;
+
+            var data = {
+                name: client.name,
+                description: client.description
+            }
+
+            return $http({
+                url: myUrl,
+                method: 'PUT',
+                data: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(putClientComplete)
+              .catch(putClientFailed);
+
+            function putClientComplete (response) {
+                logger.success('Modificado');
+                return response.data;
+            }
+            function putClientFailed (response) {
+                errorHanlder(response);
+            }
         }
 
 
