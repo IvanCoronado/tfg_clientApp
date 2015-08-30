@@ -1,7 +1,7 @@
 <md-dialog aria-label="Edit user" flex-sm="100" flex-gt-sm="90" flex-gt-md="60" flex-gt-lg="40" >
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Login</h2>
+        <h2>Registro</h2>
         <span flex></span>
         <md-button class="md-icon-button" aria-label="cerrar" ng-click="vm.cancel()">
             <i class="fa fa-close"></i>
@@ -30,9 +30,20 @@
                 <div ng-message="md-maxlength">No puede tener m&aacute;s de 10 car&aacute;cteres.</div>
             </div>
           </md-input-container>
+
+          <md-input-container flex>
+            <label>Descripcci&oacute;n</label>
+            <textarea  type="description" name="description"
+                    ng-model="vm.user.description" 
+                    md-maxlength="150"></textarea>
+            <div ng-messages="profileForm.password.$error">
+                <div ng-message="required">Campo obligat&oacute;rio.</div>
+                <div ng-message="md-maxlength">No puede tener m&aacute;s de 10 car&aacute;cteres.</div>
+            </div>
+          </md-input-container>
           
           </br>
-          <md-button class="md-raised" ng-click="vm.answer(profileForm)">Entrar</md-button>
+          <md-button class="md-raised" ng-click="vm.answer(profileForm)">Registrarse</md-button>
           <span ng-click="vm.cancel()"><md-button class="" >Cancelar</md-button></span>          
       </form >
     </md-content>

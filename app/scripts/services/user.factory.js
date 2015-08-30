@@ -11,6 +11,7 @@
 
         var service = {
             login: login,
+            register: register,
             isLogged: isLogged,
             logout: logout
         };
@@ -25,7 +26,17 @@
                 }
             });
 
-            return isLogged() ? true : false;
+            return isLogged();
+        }
+
+        function register (client) {
+            DataService.postClient(client).then(function(response){
+                if(typeof response !== 'undefined'){
+                    user = response;
+                }
+            });
+
+            return isLogged();
         }
 
         function isLogged() {

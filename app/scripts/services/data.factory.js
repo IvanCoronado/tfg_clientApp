@@ -15,7 +15,8 @@
             getLocations: getLocations,
             getLocation: getLocation,
             getDeviceStatus: getDeviceStatus,
-            getClient: getClient
+            getClient: getClient,
+            postClient: postClient
 
         };
         return service;
@@ -93,6 +94,43 @@
                 errorHanlder(response);
             }
         }
+
+        function postClient (client) {
+            var myUrl = server + "/clients";
+
+            var data = {
+                name: client.username,
+                description: client.description
+            };
+
+            return $http({
+                url: myUrl,
+                method: 'POST',
+                data: JSON.stringify(data),
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              }).then(postClientComplete)
+                .catch(postClientFailed);
+           
+            function postClientComplete(response) {
+                if(response.status === 201){
+                    logger.success('Bienvenido!');
+                }
+                return response.data;
+            }
+
+            function postClientFailed(response) {
+                if(response.status === 409){
+                    logger.error('Ya existe un usuario con ese username.');
+                }else{
+                    errorHanlder(response);
+                }
+                
+            }
+
+        }
+
 
         function errorHanlder(response){
             if(response.status === 401){

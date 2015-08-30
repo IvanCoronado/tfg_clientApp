@@ -10,10 +10,10 @@
     function Controller($scope, $mdSidenav, $mdUtil, userService) {
         var nav = this;
 
-        $scope.$on('userLogged', function(event, data) { console.log("aqui!"); nav.someoneLogged = userService.isLogged(); });
+        $scope.$on('userLogged', function() { console.log("aqui!"); nav.someoneLogged = userService.isLogged(); });
 
         nav.showMenu = buildToggler('left');
-        
+        nav.logout = logout;        
 
         nav.menuPublic = [{
                 id: 'home',
@@ -65,6 +65,14 @@
                     .toggle();
             }, 300);
             return debounceFn;
+        }
+
+        /**
+         * 
+         */
+        function logout () {
+            userService.logout();
+            nav.someoneLogged = null;
         }
     }
 })();

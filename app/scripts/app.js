@@ -63,6 +63,11 @@
                 url: '^',
                 onEnter: loginModalCall
             },
+            modalRegister = {
+                name: 'app.modalRegister',
+                url: '^',
+                onEnter: registerModalCall
+            },
             locations = {
                 name: 'app.locations',
                 url: '/locations',
@@ -103,6 +108,7 @@
 
         $stateProvider
             .state(modalLogin)
+            .state(modalRegister)
             .state(app)
                 .state(home)
                 .state(locations)
@@ -114,20 +120,20 @@
     }
 
     /* @ngInject */
-    function loginModalCall($mdDialog, $state) {
+    function loginModalCall($mdDialog) {
         $mdDialog.show({
                 controller: loginCtrl,
                 controllerAs: 'vm',
                 templateUrl: 'views/modal.login.html',
                 bindToController: true
             })
-            .then(function(answer) {
+            .then(function() {
                 
             });
 
         /* @ngInject */
         function loginCtrl($rootScope,$mdDialog, userService) { 
-            var vm = this;
+            var vm = this; // jshint ignore:line
 
             vm.user = {};
             vm.cancel = cancel;
@@ -139,7 +145,7 @@
              **/
             function cancel() {
                 $mdDialog.cancel();
-            };
+            }
 
             /*
              * Cerramos el modal y devolvemos al controlador la respuesta
@@ -151,8 +157,50 @@
                         $rootScope.$broadcast('userLogged', true);
                     }
                 }
-            };
+            }
         }//END loginCtrl
+    }
+
+    /* @ngInject */
+    function registerModalCall($mdDialog) {
+        $mdDialog.show({
+                controller: registerCtrl,
+                controllerAs: 'vm',
+                templateUrl: 'views/modal.register.html',
+                bindToController: true
+            })
+            .then(function() {
+                
+            });
+
+        /* @ngInject */
+        function registerCtrl($rootScope,$mdDialog, userService) { 
+            var vm = this; // jshint ignore:line
+
+            vm.user = {};
+            vm.cancel = cancel;
+            vm.answer = answer;
+
+            ////////////////////////////
+            /*
+             * Cancelamos el modal (no devuelve nada al controlador)
+             **/
+            function cancel() {
+                $mdDialog.cancel();
+            }
+
+            /*
+             * Cerramos el modal y devolvemos al controlador la respuesta
+             **/
+            function answer(errors) {
+                if(errors.$valid === true){
+                    if(userService.register(vm.user)){
+                        $mdDialog.hide();
+                        $rootScope.$broadcast('userLogged', true);
+                    }
+                }
+            }
+        }//END registerCtrl
     }
 
     /* @ngInject */

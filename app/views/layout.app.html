@@ -53,11 +53,29 @@
                     <md-icon md-font-set="fa fa-lg fa-bars"></md-icon>
                 </md-button>
                 <h3>
-		        	Nombre 
-		      	</h3>
+                    Nombre 
+                </h3>
                 <span flex></span>
-                <md-button class="md-icon-button" aria-label="login" ui-sref="app.modalLogin">
-                    <md-icon md-font-set="fa-lg fa fa-sign-in"></md-icon>
+                <md-button ng-if="!nav.someoneLogged" class="md-icon-button" aria-label="login" ui-sref="app.modalLogin">
+                    <md-icon md-font-set="fa-lg fa fa-sign-in">
+                        <md-tooltip>
+                            Loguear
+                        </md-tooltip>
+                    </md-icon>
+                </md-button>
+                <md-button ng-if="!nav.someoneLogged" class="md-icon-button" aria-label="register" ui-sref="app.modalRegister">
+                    <md-icon md-font-set="fa-lg fa fa-user-plus">
+                        <md-tooltip>
+                            Registrarse
+                        </md-tooltip>
+                    </md-icon>
+                </md-button>
+                <md-button ng-if="nav.someoneLogged" class="md-icon-button" aria-label="logout" ng-click="nav.logout()">
+                    <md-icon md-font-set="fa-lg fa fa-sign-out">
+                        <md-tooltip>
+                            Desloguear
+                        </md-tooltip>
+                    </md-icon>
                 </md-button>
             </div>
         </md-toolbar>
