@@ -12,10 +12,8 @@
         vm.user = initUser;
         vm.updateUser = updateUser;
 
-        function updateUser(errors) {
-            if (errors.$valid === true) {
-                userService.updateData(vm.user);
-            }
+        function updateUser() {
+            userService.updateData(vm.user);
         }
 
     }

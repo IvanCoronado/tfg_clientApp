@@ -7,7 +7,7 @@
 
 
     /* @ngInject */
-    function Controller($scope, $mdSidenav, $mdUtil, userService) {
+    function Controller($scope, $mdSidenav, $mdUtil, $state, userService) {
         var nav = this;
 
         $scope.$on('userLogged', function() { console.log("aqui!"); nav.someoneLogged = userService.isLogged(); });
@@ -73,6 +73,7 @@
         function logout () {
             userService.logout();
             nav.someoneLogged = null;
+            $state.go('app.home');
         }
     }
 })();
