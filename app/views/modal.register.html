@@ -3,13 +3,13 @@
       <div class="md-toolbar-tools">
         <h2>Registro</h2>
         <span flex></span>
-        <md-button class="md-icon-button" aria-label="cerrar" ng-click="vm.cancel()">
+        <md-button class="md-icon-button" aria-label="cerrar" ng-click="vm.cancel()" >
             <i class="fa fa-close"></i>
         </md-button>
       </div>
     </md-toolbar>
     <md-content  layout="column" layout-align="center center" class="md-padding">
-      <form name="profileForm" layout-fill >
+      <form ng-submit="vm.answer()" name="profileForm" layout-fill  novalidate>
           <md-input-container flex>
             <label>Nombre de usuario</label>
             <input name="username" required md-maxlength="15" ng-model="vm.user.username">
@@ -23,7 +23,6 @@
             <label>Contraseña</label>
             <input  type="password" name="password"
                     ng-model="vm.user.password" 
-                    required 
                     md-maxlength="10">
             <div ng-messages="profileForm.password.$error">
                 <div ng-message="required">Campo obligat&oacute;rio.</div>
@@ -35,6 +34,7 @@
             <label>Descripcci&oacute;n</label>
             <textarea  type="description" name="description"
                     ng-model="vm.user.description" 
+                    required 
                     md-maxlength="150"></textarea>
             <div ng-messages="profileForm.password.$error">
                 <div ng-message="required">Campo obligat&oacute;rio.</div>
@@ -43,7 +43,7 @@
           </md-input-container>
           
           </br>
-          <md-button class="md-raised" ng-click="vm.answer(profileForm)">Registrarse</md-button>
+          <md-button class="md-raised" type="submit" ng-disabled="profileForm.$invalid">Registrarse</md-button>
           <span ng-click="vm.cancel()"><md-button class="" >Cancelar</md-button></span>          
       </form >
     </md-content>

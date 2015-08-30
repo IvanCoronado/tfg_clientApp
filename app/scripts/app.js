@@ -24,7 +24,7 @@
 
                 if (!userIsLogged) {
                     e.preventDefault(); //Cancela la accion
-                } 
+                }
             }
 
         });
@@ -113,11 +113,11 @@
             .state(modalLogin)
             .state(modalRegister)
             .state(app)
-                .state(home)
-                .state(locations)
-                .state(detail)
-                .state(myProfile)
-                .state(myLocations);
+            .state(home)
+            .state(locations)
+            .state(detail)
+            .state(myProfile)
+            .state(myLocations);
 
         /* TODO: Asignar colores de toasts desde aqui en lugar de desde el CSS.
          *      Hay un bug en el componente y no se puede hacer actualmente,
@@ -139,11 +139,11 @@
                 bindToController: true
             })
             .then(function() {
-                
+
             });
 
         /* @ngInject */
-        function loginCtrl($rootScope,$mdDialog, userService) { 
+        function loginCtrl($rootScope, $mdDialog, userService, DataService) {
             var vm = this; // jshint ignore:line
 
             vm.user = {};
@@ -161,15 +161,16 @@
             /*
              * Cerramos el modal y devolvemos al controlador la respuesta
              **/
-            function answer(errors) {
-                if(errors.$valid === true){
-                    if(userService.login(vm.user)){
-                        $mdDialog.hide();
+            function answer() {
+                DataService.getClient(vm.user).then(function(response){
+                    if(typeof response !== 'undefined'){
+                        userService.setUser(response)
                         $rootScope.$broadcast('userLogged', true);
+                        $mdDialog.hide();
                     }
-                }
+                });
             }
-        }//END loginCtrl
+        } //END loginCtrl
     }
 
     /* @ngInject */
@@ -180,12 +181,12 @@
                 templateUrl: 'views/modal.register.html',
                 bindToController: true
             })
-            .then(function() {
-                
+            .then(function(answer) {
+
             });
 
         /* @ngInject */
-        function registerCtrl($rootScope,$mdDialog, userService) { 
+        function registerCtrl($rootScope, $mdDialog, userService, DataService) {
             var vm = this; // jshint ignore:line
 
             vm.user = {};
@@ -203,15 +204,16 @@
             /*
              * Cerramos el modal y devolvemos al controlador la respuesta
              **/
-            function answer(errors) {
-                if(errors.$valid === true){
-                    if(userService.register(vm.user)){
-                        $mdDialog.hide();
+            function answer() {
+                DataService.postClient(vm.user).then(function(response){
+                    if(typeof response !== 'undefined'){
+                        userService.setUser(response)
                         $rootScope.$broadcast('userLogged', true);
+                        $mdDialog.hide();
                     }
-                }
+                });
             }
-        }//END registerCtrl
+        } //END registerCtrl
     }
 
     /* @ngInject */

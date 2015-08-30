@@ -10,8 +10,7 @@
         var user = null;
 
         var service = {
-            login: login,
-            register: register,
+            setUser: setUser,
             updateData: updateData,
             isLogged: isLogged,
             logout: logout,
@@ -21,24 +20,8 @@
 
         ////////////////
 
-        function login(idClient) {
-            DataService.getClient(idClient).then(function(response){
-                if(typeof response !== 'undefined'){
-                    user = response;
-                }
-            });
-
-            return isLogged();
-        }
-
-        function register (client) {
-            DataService.postClient(client).then(function(response){
-                if(typeof response !== 'undefined'){
-                    user = response;
-                }
-            });
-
-            return isLogged();
+        function setUser (client) {
+           user = client;
         }
 
         function updateData(client){
@@ -58,7 +41,6 @@
         }
 
         function getUser(){
-            console.log(user);
             return user;
         }
 

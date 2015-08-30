@@ -8,8 +8,8 @@
         </md-button>
       </div>
     </md-toolbar>
-    <md-content  layout="column" layout-align="center center" class="md-padding">
-      <form name="profileForm" layout-fill >
+    <md-content   layout="column" layout-align="center center" class="md-padding">
+      <form ng-submit="vm.answer()" name="profileForm" layout-fill  novalidate>
           <md-input-container flex>
             <label>Nombre de usuario</label>
             <input name="username" required md-maxlength="15" ng-model="vm.user.username">
@@ -23,7 +23,6 @@
             <label>Contraseña</label>
             <input  type="password" name="password"
                     ng-model="vm.user.password" 
-                    required 
                     md-maxlength="10">
             <div ng-messages="profileForm.password.$error">
                 <div ng-message="required">Campo obligat&oacute;rio.</div>
@@ -32,7 +31,7 @@
           </md-input-container>
           
           </br>
-          <md-button class="md-raised" ng-click="vm.answer(profileForm)">Entrar</md-button>
+          <md-button class="md-raised" type="submit" ng-disabled="profileForm.$invalid">Entrar</md-button>
           <span ng-click="vm.cancel()"><md-button class="" >Cancelar</md-button></span>          
       </form >
     </md-content>
