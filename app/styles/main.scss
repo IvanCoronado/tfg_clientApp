@@ -68,3 +68,27 @@ md-card{
 	color: #f44336;
 }
 /* END cards*/
+
+
+
+/* MD_TOAST */
+md-toast{
+  position: fixed;
+}
+md-toast.md-success-toast-theme {
+
+    background-color: #81C784;
+}
+
+md-toast.md-error-toast-theme {
+    background-color: #E57373;
+}
+
+md-toast.md-warning-toast-theme {
+    background-color: #FFD54F;
+}
+
+md-toast.md-info-toast-theme {
+    background-color: #64B5F6;
+}
+/* END MD_TOAST */

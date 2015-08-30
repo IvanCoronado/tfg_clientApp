@@ -119,6 +119,14 @@
                 .state(myProfile)
                 .state(myLocations);
 
+        /* TODO: Asignar colores de toasts desde aqui en lugar de desde el CSS.
+         *      Hay un bug en el componente y no se puede hacer actualmente,
+         *      poniendo esto evitamos que nos de warning de que no existe el tema.
+         **/
+        $mdThemingProvider.theme('error-toast');
+        $mdThemingProvider.theme('info-toast');
+        $mdThemingProvider.theme('success-toast');
+        $mdThemingProvider.theme('warning-toast');
 
     }
 
