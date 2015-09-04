@@ -13,7 +13,7 @@
         .run(security);
 
     /* @ngInject */
-    function security($rootScope, userService) {
+    function security($rootScope, userService, $http, $templateCache) {
         $rootScope.$on("$stateChangeError", console.log.bind(console));
 
         $rootScope.$on('$stateChangeStart', function(e, toState) {
@@ -28,6 +28,11 @@
             }
 
         });
+
+        $http.get('views/formMessages.html')
+            .then(function(response) {
+                $templateCache.put('form-messages', response.data);
+            });
     }
 
     /* @ngInject */
