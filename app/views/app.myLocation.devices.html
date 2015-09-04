@@ -1,25 +1,25 @@
 <md-card flex-gt-sm="100" flex-gt-md="70">
 	<h2>Modificar localización</h2>
     <md-content layout-padding>
-        <form name="locationForm">
+        <form ng-submit="vm.updateLocation()" name="locationForm">
             <div layout layout-sm="column">
                 <md-input-container  flex>
                     <label>Nombre</label>
-                    <input required ng-model="vm.locationId.name" name="name" md-maxlength="15" >
+                    <input required ng-model="vm.location.name" name="name" md-maxlength="15" >
                     <ng-messages for="locationForm.name.$error">
 	                    <div ng-messages-include="form-messages"></div>
 	                </ng-messages>
                 </md-input-container>
                 <md-input-container  flex>
                     <label>Latitude</label>
-                    <input required ng-model="vm.locationId.latitude" name="latitude" type="number">
+                    <input required ng-model="vm.location.latitude" step="any" name="latitude" type="number">
                     <ng-messages for="locationForm.latitude.$error">
 	                    <div ng-messages-include="form-messages"></div>
 	                </ng-messages>
                 </md-input-container>
                 <md-input-container  flex>
                     <label>Longitude</label>
-                    <input required ng-model="vm.locationId.longitude" name="longitude" type="number">
+                    <input required ng-model="vm.location.longitude" step="any" name="longitude" type="number">
                     <ng-messages for="locationForm.longitude.$error">
 	                    <div ng-messages-include="form-messages"></div>
 	                </ng-messages>
@@ -28,21 +28,21 @@
             <div layout layout-sm="column">
                 <md-input-container  flex>
                     <label>Dirección</label>
-                    <input required ng-model="vm.locationId.address" name="address" >
+                    <input required ng-model="vm.location.address" name="address" >
                     <ng-messages for="locationForm.address.$error">
 	                    <div ng-messages-include="form-messages"></div>
 	                </ng-messages>
                 </md-input-container>
                 <md-input-container  flex>
                     <label>Ciudad</label>
-                    <input required ng-model="vm.locationId.city" name="city" md-maxlength="15">
+                    <input required ng-model="vm.location.city" name="city" md-maxlength="15">
                     <ng-messages for="locationForm.city.$error">
 	                    <div ng-messages-include="form-messages"></div>
 	                </ng-messages>
                 </md-input-container>
                 <md-input-container  flex>
                     <label>Capacidad máxima</label>
-                    <input required  ng-model="vm.locationId.max_capacity" name="max_capacity" min="0" type="number">
+                    <input required  ng-model="vm.location.max_capacity" name="max_capacity" min="0" type="number">
                     <ng-messages for="locationForm.max_capacity.$error">
 	                    <div ng-messages-include="form-messages"></div>
 	                </ng-messages>
@@ -50,7 +50,7 @@
             </div>
             <md-input-container  flex>
                 <label>Descripción</label>
-                <textarea required  ng-model="vm.locationId.description" columns="1" md-maxlength="150"></textarea>
+                <textarea required  ng-model="vm.location.description" columns="1" md-maxlength="150"></textarea>
                 <ng-messages for="locationForm.description.$error">
 	                    <div ng-messages-include="form-messages"></div>
 	                </ng-messages>
@@ -63,6 +63,7 @@
 <div flex layout="column" layout-align="center center" class="table-responsive-vertical">
     <table flex-gt-sm="100" flex-gt-md="70" id="table" class="table table-hover table-mc-amber table-striped md-whiteframe-z2-table">
     	<h2>Dispositivos en esta localización</h2>
+    	 <div> <md-button ng-click="vm.addDevice()" class="md-raised md-accent">Añadir dispositivo</md-button> </div>
         <thead>
             <tr>
                 <th>Id</th>
@@ -72,7 +73,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="device in vm.locationId.devices track by $index">
+            <tr ng-repeat="device in vm.location.devices track by $index">
                 <td data-title="Id">{{device.id}}</td>
                 <td data-title="Nombre">{{device.name}}</td>
                 <td data-title="Tipo">{{device.type_name}}</td>
@@ -84,5 +85,5 @@
             </tr>
         </tbody>
     </table>
-    <div> <md-button ng-click="vm.addDevice()" class="md-raised md-accent">Añadir dispositivo</md-button> </div>
+   
 </div>

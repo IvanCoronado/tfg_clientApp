@@ -14,11 +14,13 @@
         var service = {
             getLocations: getLocations,
             getLocation: getLocation,
+            updateLocation: updateLocation,
             getDeviceStatus: getDeviceStatus,
             getClient: getClient,
             postClient: postClient,
             putClient: putClient,
-            removeDevice: removeDevice
+            removeDevice: removeDevice,
+            addDevice: addDevice
         };
         return service;
 
@@ -131,6 +133,40 @@
             }
 
         }
+        
+        function updateLocation (clientId, location) {
+            var myUrl = server + "/clients/" + clientId + "/locations/" + location.id;
+
+            var data = {
+                name: location.name,
+                description: location.description,
+                maxCapacity: location.max_capacity,
+                latitude: location.latitude,
+                longitude: location.longitude,
+                address: location.address,
+                city: location.city
+            };
+
+            console.log(JSON.stringify(data));
+
+            return $http({
+                url: myUrl,
+                method: 'PUT',
+                data: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(updateLocationComplete)
+              .catch(updateLocationFailed);
+
+            function updateLocationComplete (response) {
+                logger.success('Modificado');
+                return response.data;
+            }
+            function updateLocationFailed (response) {
+                errorHanlder(response);
+            }
+        }
 
         function putClient (client) {
             var myUrl = server + "/clients/" + client.id;
@@ -174,6 +210,36 @@
                 return response.data;
             }
             function removeDeviceFailed (response) {
+                errorHanlder(response);
+            }
+        }
+
+        function addDevice(locationId, newDevice){
+            var myUrl = server + "/locations/" + locationId + "/devices";
+
+            var data = {
+                name: newDevice.name,
+                type: newDevice.type
+            };
+
+            return $http({
+                url: myUrl,
+                method: 'POST',
+                data: JSON.stringify(data),
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              }).then(addDeviceComplete)
+                .catch(addDeviceFailed);
+           
+            function addDeviceComplete(response) {
+                if(response.status === 201){
+                    logger.success('Dispositivo creado!');
+                }
+                return response.data;
+            }
+
+            function addDeviceFailed(response) {
                 errorHanlder(response);
             }
         }
