@@ -16,6 +16,9 @@ body {
 .ng-scope {
     height: 100%;
 }
+md-tooltip, md-toast{
+    height: auto !important;
+}
 
 md-item .md-button.menu-button {
     margin: 0;

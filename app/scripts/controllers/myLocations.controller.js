@@ -7,13 +7,55 @@
 
     
     /* @ngInject */
-    function Controller($filter, initLocations) {
+    function Controller($mdDialog, initLocations) {
         var vm = this;
         vm.locations = initLocations.locations;
-        console.log(initLocations);
+        vm.addLocationPopup = addLocationPopup;
         ////////////////
 
 
+        function addLocationPopup() {
+            $mdDialog.show({
+              controller: addLocationDialogController,
+              controllerAs: 'vm',
+              templateUrl: 'views/modal.addLocation.html',
+              bindToController: true,
+              clickOutsideToClose:true
+            })
+            .then(function(newLocation) {
+               vm.locations.push(newLocation);
+            }, function() {
+
+            });
+        }
+
     }
+
+    /* @ngInject */
+    function addLocationDialogController($mdDialog, DataService, userService) { 
+        var vm = this; // jshint ignore:line
+
+        vm.cancel = cancel;
+        vm.answer = answer;
+
+        ////////////////////////////
+        /*
+         * Cancelamos el modal (no devuelve nada al controlador)
+         **/
+        function cancel() {
+            $mdDialog.cancel();
+        }
+
+        /*
+         * Cerramos el modal y devolvemos al controlador la respuesta
+         **/
+        function answer() {
+            DataService.addLocation(userService.getId(), vm.location).then(function(response){
+                if(typeof response !== 'undefined'){
+                    $mdDialog.hide(response);
+                }
+            });
+        }
+    }//END createTeacherDialogController
 })();
 
