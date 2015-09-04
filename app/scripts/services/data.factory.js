@@ -17,7 +17,8 @@
             getDeviceStatus: getDeviceStatus,
             getClient: getClient,
             postClient: postClient,
-            putClient: putClient
+            putClient: putClient,
+            removeDevice: removeDevice
         };
         return service;
 
@@ -154,6 +155,25 @@
                 return response.data;
             }
             function putClientFailed (response) {
+                errorHanlder(response);
+            }
+        }
+
+        function removeDevice (deviceId) {
+            var myUrl = server + "/devices/" + deviceId;
+
+
+            return $http({
+                url: myUrl,
+                method: 'DELETE'
+            }).then(removeDeviceComplete)
+              .catch(removeDeviceFailed);
+
+            function removeDeviceComplete (response) {
+                logger.success('Eliminado');
+                return response.data;
+            }
+            function removeDeviceFailed (response) {
                 errorHanlder(response);
             }
         }

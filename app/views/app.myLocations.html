@@ -1,74 +1,29 @@
-<md-card flex-gt-sm="100" flex-gt-md="70">
-    <!-- Responsive table starts here -->
-    <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
-    <div flex layout="row" layout-align="center center" class="table-responsive-vertical">
-        <!-- Table starts here -->
-        <table flex-sm="100" flex-gt-sm="90" flex-gt-md="90" flex-gt-lg="70" id="table" class="table table-hover table-mc-amber table-striped md-whiteframe-z2-table">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Ciudad</th>
-                    <th>Descripcción</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ui-sref="app.myDevices({ locationId: location.id })" ng-repeat="location in vm.locations track by $index">
-                    <td data-title="Nombre">{{location.name}}</td>
-                    <td data-title="Ciudad">{{location.city}}</td>
-                    <td data-title="Descripcción">{{location.description}}</td>
-                    <td data-title="Acciones" layout-align="center center">
-                        <md-button flex class="md-icon-button table-button" ng-click="vm.editUserPopup($event,teacher, $index)" aria-label="Edit">
-                            <md-tooltip>
-                                Modificar
-                            </md-tooltip>
-                            <md-icon md-font-set="fa fa-lg fa-edit"></md-icon>
-                        </md-button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div flex layout="row" layout-align="center center" class="table-responsive-vertical">
+    <table flex-gt-sm="100" flex-gt-md="70" id="table" class="table table-hover table-mc-amber table-striped md-whiteframe-z2-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Ciudad</th>
+                <th>Descripcción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ui-sref="app.myDevices({ locationId: location.id })" ng-repeat="location in vm.locations track by $index">
+                <td data-title="Nombre">{{location.name}}</td>
+                <td data-title="Ciudad">{{location.city}}</td>
+                <td data-title="Descripcción">{{location.description}}</td>
+                <td data-title="Acciones" layout-align="center center">
+                    <md-button flex class="md-icon-button table-button" ng-click="vm.editUserPopup($event,teacher, $index)" aria-label="Edit">
+                        <md-tooltip>
+                            Modificar
+                        </md-tooltip>
+                        <md-icon md-font-set="fa fa-lg fa-edit"></md-icon>
+                    </md-button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
     
-</md-card>
 
-
-
-<!-- <h2>Register location</h2>
-    <md-content layout-padding>
-        <form name="userForm">
-            <div layout layout-sm="column">
-                <md-input-container flex>
-                    <label>Nombre</label>
-                    <input ng-model="location.name">
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Latitude</label>
-                    <input ng-model="location.latitude">
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Longitude</label>
-                    <input ng-model="location.longitude">
-                </md-input-container>
-            </div>
-            <div layout layout-sm="column">
-                <md-input-container flex>
-                    <label>Dirección</label>
-                    <input ng-model="location.address">
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Ciudad</label>
-                    <input ng-model="location.city">
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Código postal (Deshabilitado)</label>
-                    <input disabled ng-model="location.postalCode">
-                </md-input-container>
-            </div>
-            <md-input-container flex>
-                <label>Descripción</label>
-                <textarea ng-model="location.description" columns="1" md-maxlength="150"></textarea>
-            </md-input-container>
-            <md-button class="md-raised md-primary">Registrar</md-button>
-        </form>
-    </md-content>-->
