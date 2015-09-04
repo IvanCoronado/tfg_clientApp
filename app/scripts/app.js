@@ -224,7 +224,7 @@
              * Cerramos el modal y devolvemos al controlador la respuesta
              **/
             function answer() {
-                DataService.postClient(vm.user).then(function(response){
+                DataService.addClient(vm.user).then(function(response){
                     if(typeof response !== 'undefined'){
                         userService.setUser(response);
                         $rootScope.$broadcast('userLogged', true);

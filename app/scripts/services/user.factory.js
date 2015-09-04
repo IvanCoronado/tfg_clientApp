@@ -26,7 +26,7 @@
         }
 
         function updateData(client){
-            DataService.putClient(client).then(function(response){
+            DataService.updateClient(client).then(function(response){
                 if(typeof response !== 'undefined'){
                     user = response;
                 }

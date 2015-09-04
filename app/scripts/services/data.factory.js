@@ -14,11 +14,12 @@
         var service = {
             getLocations: getLocations,
             getLocation: getLocation,
+            addLocation: addLocation,
             updateLocation: updateLocation,
             getDeviceStatus: getDeviceStatus,
             getClient: getClient,
-            postClient: postClient,
-            putClient: putClient,
+            addClient: addClient,
+            updateClient: updateClient,
             removeDevice: removeDevice,
             addDevice: addDevice
         };
@@ -98,7 +99,7 @@
             }
         }
 
-        function postClient (client) {
+        function addClient (client) {
             var myUrl = server + "/clients";
 
             var data = {
@@ -113,17 +114,58 @@
                 headers: {
                   'Content-Type': 'application/json'
                 }
-              }).then(postClientComplete)
-                .catch(postClientFailed);
+              }).then(addClientComplete)
+                .catch(addClientFailed);
            
-            function postClientComplete(response) {
+            function addClientComplete(response) {
                 if(response.status === 201){
                     logger.success('Bienvenido!');
                 }
                 return response.data;
             }
 
-            function postClientFailed(response) {
+            function addClientFailed(response) {
+                if(response.status === 409){
+                    logger.error('Ya existe un usuario con ese username.');
+                }else{
+                    errorHanlder(response);
+                }
+                
+            }
+
+        }
+
+        function addLocation (clientId, location) {
+            var myUrl = server + "/clients/" + clientId + "/locations";
+
+            var data = {
+                name: location.name,
+                description: location.description,
+                maxCapacity: location.max_capacity,
+                latitude: location.latitude,
+                longitude: location.longitude,
+                address: location.address,
+                city: location.city
+            };
+
+            return $http({
+                url: myUrl,
+                method: 'POST',
+                data: JSON.stringify(data),
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              }).then(addLocationComplete)
+                .catch(addLocationFailed);
+           
+            function addLocationComplete(response) {
+                if(response.status === 201){
+                    logger.success('Localización creada!');
+                }
+                return response.data;
+            }
+
+            function addLocationFailed(response) {
                 if(response.status === 409){
                     logger.error('Ya existe un usuario con ese username.');
                 }else{
@@ -168,7 +210,7 @@
             }
         }
 
-        function putClient (client) {
+        function updateClient (client) {
             var myUrl = server + "/clients/" + client.id;
 
             var data = {
@@ -183,14 +225,14 @@
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }).then(putClientComplete)
-              .catch(putClientFailed);
+            }).then(updateClientComplete)
+              .catch(updateClientFailed);
 
-            function putClientComplete (response) {
+            function updateClientComplete (response) {
                 logger.success('Modificado');
                 return response.data;
             }
-            function putClientFailed (response) {
+            function updateClientFailed (response) {
                 errorHanlder(response);
             }
         }
