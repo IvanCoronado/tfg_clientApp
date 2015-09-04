@@ -106,7 +106,20 @@
                 parent: app,
                 module: 'private',
                 templateUrl: 'views/app.myLocations.html',
-                controller: 'myLocationsCtrl as vm'
+                controller: 'myLocationsCtrl as vm',
+                resolve: {
+                    initLocations: initMyLocations
+                }
+            },
+            myDevices = {
+                name: 'app.myDevices',
+                url: '/myLocations/{locationId:[0-9]{1,4}}',
+                templateUrl: 'views/app.myLocation.devices.html',
+                controller: 'myLocationDevicesCtrl as vm',
+                module: 'private',
+                resolve: {
+                    initLocation: getLocation
+                }
             };
 
         $stateProvider
@@ -117,7 +130,8 @@
             .state(locations)
             .state(detail)
             .state(myProfile)
-            .state(myLocations);
+            .state(myLocations)
+            .state(myDevices);
 
         /* TODO: Asignar colores de toasts desde aqui en lugar de desde el CSS.
          *      Hay un bug en el componente y no se puede hacer actualmente,
@@ -162,9 +176,9 @@
              * Cerramos el modal y devolvemos al controlador la respuesta
              **/
             function answer() {
-                DataService.getClient(vm.user).then(function(response){
+                DataService.getClient(vm.user.username).then(function(response){
                     if(typeof response !== 'undefined'){
-                        userService.setUser(response)
+                        userService.setUser(response);
                         $rootScope.$broadcast('userLogged', true);
                         $mdDialog.hide();
                     }
@@ -181,7 +195,7 @@
                 templateUrl: 'views/modal.register.html',
                 bindToController: true
             })
-            .then(function(answer) {
+            .then(function() {
 
             });
 
@@ -207,7 +221,7 @@
             function answer() {
                 DataService.postClient(vm.user).then(function(response){
                     if(typeof response !== 'undefined'){
-                        userService.setUser(response)
+                        userService.setUser(response);
                         $rootScope.$broadcast('userLogged', true);
                         $mdDialog.hide();
                     }
@@ -220,6 +234,12 @@
     function initLocations(DataService) {
         return DataService.getLocations();
     }
+
+    /* @ngInject */
+    function initMyLocations(DataService, userService) {
+        return DataService.getClient(userService.getId());
+    }
+    
 
     /* @ngInject */
     function getLocation(DataService, $stateParams) {

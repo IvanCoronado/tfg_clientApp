@@ -7,16 +7,13 @@
 
     
     /* @ngInject */
-    function Controller() {
+    function Controller($filter, initLocations) {
         var vm = this;
-        vm.title = 'Controller';
-
-        activate();
-
+        vm.locations = initLocations.locations;
+        console.log(initLocations);
         ////////////////
 
-        function activate() {
-        }
+
     }
 })();
 

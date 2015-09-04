@@ -22,7 +22,6 @@
                 DataService.getDeviceStatus(device.id).then(function(response){
                     vm.status.unshift(response);
                 });
-
             });
         }
     }

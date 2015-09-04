@@ -78,7 +78,7 @@
         }
 
         function getClient(idClient){
-            var myUrl = server + "/clients/" + idClient.username;
+            var myUrl = server + "/clients/" + idClient;
 
             return $http({
                 url: myUrl,
@@ -137,7 +137,7 @@
             var data = {
                 name: client.name,
                 description: client.description
-            }
+            };
 
             return $http({
                 url: myUrl,

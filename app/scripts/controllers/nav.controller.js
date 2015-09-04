@@ -10,7 +10,7 @@
     function Controller($scope, $mdSidenav, $mdUtil, $state, userService) {
         var nav = this;
 
-        $scope.$on('userLogged', function() { console.log("aqui!"); nav.someoneLogged = userService.isLogged(); });
+        $scope.$on('userLogged', function() { nav.someoneLogged = userService.isLogged(); });
 
         nav.showMenu = buildToggler('left');
         nav.logout = logout;        

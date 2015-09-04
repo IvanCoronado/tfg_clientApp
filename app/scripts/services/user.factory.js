@@ -14,7 +14,8 @@
             updateData: updateData,
             isLogged: isLogged,
             logout: logout,
-            getUser: getUser
+            getUser: getUser,
+            getId: getId
         };
         return service;
 
@@ -31,6 +32,9 @@
                 }
             });
             
+        }
+        function getId() {
+            return user.id;
         }
         function isLogged() {
             return user !== null;
