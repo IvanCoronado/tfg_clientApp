@@ -11,23 +11,26 @@
         </thead>
         <tbody>
             <tr ng-repeat="location in vm.locations track by $index">
-                <td data-title="Nombre">{{location.name}}</td>
-                <td data-title="Ciudad">{{location.city}}</td>
-                <td data-title="Descripcción">{{location.description}}</td>
-                <td data-title="Acciones" layout="row" layout-align="center center" layout-fill>
-                    <md-button flex class="md-icon-button table-button" ui-sref="app.myDevices({ locationId: location.id })" aria-label="Edit">
-                        <md-tooltip>
-                            Modificar
-                        </md-tooltip>
-                        <md-icon md-font-set="fa fa-lg fa-edit"></md-icon>
-                    </md-button>
+                <td  data-title="Nombre">{{location.name}}</td>
+                <td  data-title="Ciudad">{{location.city}}</td>
+                <td  data-title="Descripcción">{{location.description}}</td>
+                <td  data-title="Acciones">
+                    
+                        <md-button flex class="md-icon-button table-button" ng-click="vm.updateLocation(location.id)" aria-label="Edit">
+                            <md-tooltip>
+                                Modificar
+                            </md-tooltip>
+                            <md-icon md-font-set="fa fa-lg fa-edit"></md-icon>
+                        </md-button>
 
-                    <md-button flex class="md-icon-button table-button" ng-click="vm.removeLocation(location.id, $index)" aria-label="Remove location">
-                        <md-tooltip>
-                            Borrar
-                        </md-tooltip>
-                        <md-icon md-font-set="fa fa-lg fa-trash"></md-icon>
-                    </md-button>
+                        <md-button flex class="md-icon-button table-button" ng-click="vm.removeLocation(location.id, $index)" aria-label="Remove location">
+                            <md-tooltip>
+                                Borrar
+                            </md-tooltip>
+                            <md-icon md-font-set="fa fa-lg fa-trash"></md-icon>
+                        </md-button>
+              
+                    
                 </td>
             </tr>
         </tbody>
