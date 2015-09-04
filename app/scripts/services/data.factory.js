@@ -16,6 +16,7 @@
             getLocation: getLocation,
             addLocation: addLocation,
             updateLocation: updateLocation,
+            removeLocation: removeLocation,
             getDeviceStatus: getDeviceStatus,
             getClient: getClient,
             addClient: addClient,
@@ -252,6 +253,25 @@
                 return response.data;
             }
             function removeDeviceFailed (response) {
+                errorHanlder(response);
+            }
+        }
+
+        function removeLocation (locationId) {
+            var myUrl = server + "/locations/" + locationId;
+
+
+            return $http({
+                url: myUrl,
+                method: 'DELETE'
+            }).then(removeLocationComplete)
+              .catch(removeLocationFailed);
+
+            function removeLocationComplete (response) {
+                logger.success('Eliminado');
+                return response.data;
+            }
+            function removeLocationFailed (response) {
                 errorHanlder(response);
             }
         }

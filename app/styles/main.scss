@@ -16,7 +16,7 @@ body {
 .ng-scope {
     height: 100%;
 }
-md-tooltip, md-toast{
+md-tooltip{
     height: auto !important;
 }
 
@@ -84,6 +84,7 @@ md-card {
 
 md-toast {
     position: fixed;
+    height: auto !important;
 }
 
 md-toast.md-success-toast-theme {

@@ -7,10 +7,11 @@
 
     
     /* @ngInject */
-    function Controller($mdDialog, initLocations) {
+    function Controller($mdDialog, DataService, initLocations) {
         var vm = this;
         vm.locations = initLocations.locations;
         vm.addLocationPopup = addLocationPopup;
+        vm.removeLocation = removeLocation;
         ////////////////
 
 
@@ -29,7 +30,15 @@
             });
         }
 
+        function removeLocation(locationId, index) {
+            DataService.removeLocation(locationId).then(function(){
+                vm.locations.splice(index, 1);
+            });
+        }
+
+
     }
+
 
     /* @ngInject */
     function addLocationDialogController($mdDialog, DataService, userService) { 

@@ -79,6 +79,9 @@
                 <td data-title="Tipo">{{device.type_name}}</td>
                 <td data-title="Acciones" layout-align="center center">
                     <md-button flex class="md-icon-button table-button" ng-click="vm.removeDevice(device.id, $index)" aria-label="Remove device">
+                        <md-tooltip>
+                            Borrar
+                        </md-tooltip>
                         <md-icon md-font-set="fa fa-lg fa-trash"></md-icon>
                     </md-button>
                 </td>
