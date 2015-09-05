@@ -33,53 +33,6 @@ md-item .md-button.menu-button {
     font-size: 3.7em !important;
 }
 
-.background-grey {
-    background-color: #f6f6f6;
-}
-
-.background-hue1 {
-    background-color: #009688 !important;
-    color: white !important;
-}
-
-
-/* Cards */
-
-md-card {
-    &.button {
-        &:hover {
-            cursor: pointer;
-        }
-    }
-    .header {
-        height: 70px;
-    }
-    .iconDevice {
-        height: 30px;
-        width: 30px;
-        font-size: 2em !important;
-    }
-}
-
-.counter {
-    color: #2196F3;
-}
-
-.temperature {
-    color: #F44336;
-}
-
-.plugged {
-    color: #4caf50;
-}
-
-.unplugged {
-    color: #f44336;
-}
-
-
-/* END cards*/
-
 
 /* MD_TOAST */
 

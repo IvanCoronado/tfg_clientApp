@@ -64,8 +64,8 @@
             }
         }
 
-        function getDeviceStatus(deviceId){
-            var myUrl = server + "/devices/"+deviceId+"/status";
+        function getDeviceStatus(deviceId, type){
+            var myUrl = server + "/devices/"+deviceId+"/status?type=" + type;
 
             return $http({
                 url: myUrl,
