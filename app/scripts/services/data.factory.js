@@ -8,7 +8,7 @@
    
 
     /* @ngInject */
-    function DataService($http, $location, logger) {
+    function DataService($httpParamSerializer, $http, $location, logger) {
         var server = "http://localhost:8080/0";
 
         var service = {
@@ -18,6 +18,7 @@
             updateLocation: updateLocation,
             removeLocation: removeLocation,
             getDeviceStatus: getDeviceStatus,
+            getDeviceTimeline: getDeviceTimeline,
             getClient: getClient,
             addClient: addClient,
             updateClient: updateClient,
@@ -78,6 +79,30 @@
             }
 
             function getDeviceStatusFailed(response) {
+                errorHanlder(response);
+            }
+        }
+
+        function getDeviceTimeline(deviceId, date, n_days, typeDevice, group_time){
+            var data = {
+                date: date,
+                n_days: n_days,
+                type: typeDevice,
+                group_time: group_time
+            };
+            var myUrl = server + "/devices/"+deviceId+"/timeline?" + $httpParamSerializer(data);
+
+            return $http({
+                url: myUrl,
+                method: 'GET'
+              }).then(getDeviceTimelineComplete)
+                .catch(getDeviceTimelineFailed);
+
+            function getDeviceTimelineComplete(response) {
+                return response.data;
+            }
+
+            function getDeviceTimelineFailed(response) {
                 errorHanlder(response);
             }
         }
