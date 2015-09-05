@@ -44,6 +44,10 @@
 
                 }
             });
+
+            $scope.datax = {
+                "id": "x"
+            };
         }
 
 
@@ -127,47 +131,74 @@
             });
         }
 
+        /*
+         *  Recive los datos de los últimos 7 días y el tipo de sensor que es.
+         *  Devuelve un array de datos compatibles con la gráfica.
+                [{
+                    "x": "Lunes",
+                    "[typeText]-max": 0,
+                    "[typeText]-min": 0
+                }, {
+                    "x": "Martes",
+                    "[typeText]-max": 0,
+                    "[typeText]-min": 0
+                }, {
+                    "x": "Miercoles",
+                    "[typeText]-max": 0,
+                    "[typeText]-min": 0
+                }, {
+                    "x": "Jueves",
+                    "[typeText]-max": 0,
+                    "[typeText]-min": 0
+                }, {
+                    "x": "Viernes",
+                    "[typeText]-max": 0,
+                    "[typeText]-min": 0
+                }, {
+                    "x": "Sábado",
+                    "[typeText]-max": 15,
+                    "[typeText]-min": 12
+                }, {
+                    "x": "Domingo",
+                    "[typeText]-max": 32,
+                    "[typeText]-min": 22
+                }]
+         **/
         function getWeekDatapoints(data, typeText) {
             var datapoints = [];
+            //Creamos un array con la estructura básica sin inicializar
             getLastSevenDaysText().forEach(function(dayText) {
-                var dayData = {}
-                dayData['x'] = dayText;
+                var dayData = {};
+                dayData['x'] = dayText;         // jshint ignore:line
                 dayData[typeText + "-max"] = 0;
                 dayData[typeText + "-min"] = 0;
 
                 datapoints.push(dayData);
             });
 
+            //Recorremos los datos recibidos y rellenamos el array antes creado
             lodash.forEach(data, function(dayData) {
-                var weekDayIndex = ((new Date(data[0].date)).getDay() + 6) % 7; 
+                var weekDayIndex = (((new Date(dayData.date)).getDay() + 6) % 7 ); 
                 datapoints[weekDayIndex][typeText + "-max"] = dayData.value_max;
                 datapoints[weekDayIndex][typeText + "-min"] = dayData.value_min;
-            })
+            });
+
 
             return datapoints;
         }
 
 
-        $scope.datax = {
-            "id": "x"
-        };
+        
 
         /*
          *  Return an array with the last 7 days in text:
          *  If today is Wednesday, the function will return [Thursday,Friday,Saturday,Sunday,Monday,Tuesday,Wednesday]
          **/
         function getLastSevenDaysText() {
-            var day = (new Date()).getDay();
-            var weekday = new Array();
-            weekday[0] = "Domingo";
-            weekday[1] = "Lunes";
-            weekday[2] = "Martes";
-            weekday[3] = "Miercoles";
-            weekday[4] = "Jueves";
-            weekday[5] = "Viernes";
-            weekday[6] = "Sábado";
+            var day = (new Date()).getDay(),
+                weekday = ["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado","Domingo"],
+                lastSevenDays = [];
 
-            var lastSevenDays = [];
             for (var i = day+1; i <= 6; i++) {
                 lastSevenDays.push(weekday[i]);
             }
