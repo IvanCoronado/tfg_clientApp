@@ -9,10 +9,8 @@
             </md-toolbar>
             <div layout="column" layout-gt-sm="row" layout-fill layout-align="center center" class="md-padding">
                 <div layout-align="center center" flex style="text-align:center">
-                  
-                    <canvas-gauge ng-if="vm.countId !== null" width="200" min="0" max="{{vm.locationId.max_capacity}}" value="vm.counterStatus.value" over-color="#009688"  mask="Aforo (@)" style="color: gray">
+                    <canvas-gauge ng-if="vm.countId !== null" width="200" min="0" max="{{vm.locationId.max_capacity}}" value="vm.counterStatus.value" over-color="#009688" mask="Aforo (@)" style="color: gray">
                     </canvas-gauge>
-
                     <p ng-if="vm.countId !== null" class="md-caption">Última actualización: {{ vm.counterStatus.date | date:'dd/MM/yyyy @ HH:mm' }}</p>
                     <div ng-if="vm.countId === null" style="text-align:center" class="md-padding">
                         <i class="fa fa-plug"></i>
@@ -79,18 +77,8 @@
                         <span flex></span>
                     </div>
                 </md-toolbar>
-                <div layout="row" layout-wrap layout-align="center center" class="">
-                    <c3chart bindto-id="counter-historic-day" flex>
-                        <chart-column column-id="x" column-values="{{vm.hoursTimeline}}" />
-                        <chart-column column-id="Aforo" column-color="#3F51B5" column-values="10,35,30,42,63,40,0" column-type="spline" />
-                        <chart-axes values-x="x" y="Aforo" />
-                        <chart-axis>
-                            <chart-axis-x axis-position="outer-center" axis-type="category">
-                                <chart-axis-x-tick tick-rotate="50" />
-                            </chart-axis-x>
-                        </chart-axis>
-                        <chart-grid show-x="false" show-y="true">
-                        </chart-grid>
+                <div layout="row" layout-wrap layout-align="center center">
+                    <c3chart flex bindto-id="day-counter" chart-data="counterDayDatapoints" chart-columns="counterDayDatacolumns" chart-x="datax">
                     </c3chart>
                 </div>
             </md-content>
@@ -126,15 +114,7 @@
                     </div>
                 </md-toolbar>
                 <div layout="row" layout-wrap layout-align="center center" class="">
-                    <c3chart bindto-id="temperature-historic-day" flex>
-                        <chart-column column-id="x" column-values="{{vm.hoursTimeline}}" />
-                        <chart-column column-id="temperature" column-name="Temperatura" column-color="#3F51B5" column-values="3,3,4,4,5,6,9,10,12,16,17,20,22,24,24,23,25,27,24,23,22,19,18,19" column-type="spline" />
-                        <chart-axes values-x="x" y="temperature" />
-                        <chart-axis>
-                            <chart-axis-x axis-position="outer-center" axis-type="category">
-                            </chart-axis-x>
-                            <chart-grid show-x="false" show-y="true">
-                            </chart-grid>
+                    <c3chart flex bindto-id="day-temperature" chart-data="temperatureDayDatapoints" chart-columns="temperatureDayDatacolumns" chart-x="datax">
                     </c3chart>
                 </div>
             </md-content>
@@ -170,15 +150,7 @@
                     </div>
                 </md-toolbar>
                 <div layout="row" layout-wrap layout-align="center center" class="">
-                    <c3chart bindto-id="humidity-historic-day" flex>
-                        <chart-column column-id="x" column-values="{{vm.hoursTimeline}}" />
-                        <chart-column column-id="humidity" column-name="Humedad" column-color="#3F51B5" column-values="3,3,4,4,5,6,9,10,12,16,17,20,22,24,24,23,25,27,24,23,22,19,18,13" column-type="spline" />
-                        <chart-axes values-x="x" y="humidity" />
-                        <chart-axis>
-                            <chart-axis-x axis-position="outer-center" axis-type="category">
-                            </chart-axis-x>
-                            <chart-grid show-x="false" show-y="true">
-                            </chart-grid>
+                    <c3chart flex bindto-id="day-humidity" chart-data="humidityDayDatapoints" chart-columns="humidityDayDatacolumns" chart-x="datax">
                     </c3chart>
                 </div>
             </md-content>

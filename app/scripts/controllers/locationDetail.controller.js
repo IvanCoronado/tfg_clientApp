@@ -53,11 +53,27 @@
 
 
         function getCounterData() {
+            /*
+             * Los datos para el gauge de aforo
+             **/
             getStatus(vm.countId, 'count').then(function(response) {
                 vm.counterStatus = response;
 
             });
 
+
+
+            /*
+             * Los datos la gráfica de aforo del día
+             **/
+            getTimeline(vm.countId, todayDate, 1, 'count', 'hour').then(function(response) {
+                $scope.counterDayDatapoints=getDayDatapoints(response, 'counter');
+                $scope.counterDayDatacolumns=[{"id":"counter-hour","type":"line","name":"Aforo"}];
+            });
+
+            /*
+             * Los datos la gráfica de aforo de la semana
+             **/
             getTimeline(vm.countId, todayDate, 7, 'count', 'day').then(function(response) {
                 $scope.counterWeekDatapoints = getWeekDatapoints(response, 'counter');
                 $scope.counterWeekDatacolumns = [{
@@ -79,6 +95,19 @@
             getStatus(vm.temperatureId, 'unique').then(function(response) {
                 vm.temperatureStatus = response;
             });
+
+            /*
+             * Los datos la gráfica de la temperatura del día
+             **/
+            getTimeline(vm.temperatureId, todayDate, 1, 'unique', 'hour').then(function(response) {
+                $scope.temperatureDayDatapoints=getDayDatapoints(response, 'temperature');
+                $scope.temperatureDayDatacolumns=[{"id":"temperature-hour","type":"line","name":"Temperatura"}];
+            });
+
+
+            /*
+             * Los datos la gráfica de la temperatura de la semana
+             **/
             getTimeline(vm.temperatureId, todayDate, 7, 'unique', 'day').then(function(response) {
                 $scope.temperatureWeekDatapoints = getWeekDatapoints(response, 'temperature');
                 $scope.temperatureWeekDatacolumns = [{
@@ -100,6 +129,18 @@
             getStatus(vm.humidityId, 'unique').then(function(response) {
                 vm.humidityStatus = response;
             });
+
+            /*
+             * Los datos la gráfica de la humedad del día
+             **/
+            getTimeline(vm.humidityId, todayDate, 1, 'unique', 'hour').then(function(response) {
+                $scope.humidityDayDatapoints=getDayDatapoints(response, 'humidity');
+                $scope.humidityDayDatacolumns=[{"id":"humidity-hour","type":"line","name":"% Humedad"}];
+            });
+
+            /*
+             * Los datos la gráfica de la humedad de la semana
+             **/
             getTimeline(vm.humidityId, todayDate, 7, 'unique', 'day').then(function(response) {
                 $scope.humidityWeekDatapoints = getWeekDatapoints(response, 'humidity');
                 $scope.humidityWeekDatacolumns = [{
@@ -131,6 +172,29 @@
                     return response;
                 }
             });
+        }
+
+        /*
+         *  Recive los datos del día y el tipo de sensor que es.
+         *  Devuelve un array de datos compatibles con la gráfica.
+         **/
+        function getDayDatapoints(data, typeText) {
+            var datapoints = [];
+            //Creamos un array con la estructura básica sin inicializar
+            lodash.times(24, function(hourText) {
+                var dayData = {};
+                dayData['x'] = "" + hourText; // jshint ignore:line
+                dayData[typeText + "-hour"] = 0;
+
+                datapoints.push(dayData);
+            });
+
+            //Recorremos los datos recibidos y rellenamos el array antes creado
+            lodash.forEach(data, function(hourData) {
+                var weekDayIndex = (new Date(hourData.date)).getHours();
+                datapoints[weekDayIndex][typeText + "-hour"] = hourData.value_max;
+            });
+            return datapoints;
         }
 
         /*
