@@ -9,6 +9,7 @@
     /* @ngInject */
     function Controller($scope, $filter, DataService, lodash, initLocation) {
         var vm = this,
+            weekday = ["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado","Domingo"],
             todayDate = $filter('date')(new Date().getTime(), 'yyyy-MM-dd');
 
 
@@ -167,7 +168,7 @@
         function getWeekDatapoints(data, typeText) {
             var datapoints = [];
             //Creamos un array con la estructura básica sin inicializar
-            getLastSevenDaysText().forEach(function(dayText) {
+            weekday.forEach(function(dayText) {
                 var dayData = {};
                 dayData['x'] = dayText;         // jshint ignore:line
                 dayData[typeText + "-max"] = 0;
@@ -178,13 +179,13 @@
 
             //Recorremos los datos recibidos y rellenamos el array antes creado
             lodash.forEach(data, function(dayData) {
-                var weekDayIndex = (((new Date(dayData.date)).getDay() + 6) % 7 ); 
+                var weekDayIndex = (new Date(dayData.date)).getDay(); 
                 datapoints[weekDayIndex][typeText + "-max"] = dayData.value_max;
                 datapoints[weekDayIndex][typeText + "-min"] = dayData.value_min;
             });
 
 
-            return datapoints;
+            return orderWithTodayDayTextLast(datapoints);
         }
 
 
@@ -194,19 +195,18 @@
          *  Return an array with the last 7 days in text:
          *  If today is Wednesday, the function will return [Thursday,Friday,Saturday,Sunday,Monday,Tuesday,Wednesday]
          **/
-        function getLastSevenDaysText() {
+        function orderWithTodayDayTextLast(array) {
             var day = (new Date()).getDay(),
-                weekday = ["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado","Domingo"],
-                lastSevenDays = [];
+                formatedArray = [];
 
             for (var i = day+1; i <= 6; i++) {
-                lastSevenDays.push(weekday[i]);
+                formatedArray.push(array[i]);
             }
             for (var j = 0; j <= day; j++) {
-                lastSevenDays.push(weekday[j]);
+                formatedArray.push(array[j]);
             }
 
-            return lastSevenDays;
+            return formatedArray;
         }
 
 
