@@ -9,7 +9,7 @@
     /* @ngInject */
     function Controller($scope, $filter, DataService, lodash, initLocation) {
         var vm = this,
-            weekday = ["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado","Domingo"],
+            weekday = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado", "Domingo"],
             todayDate = $filter('date')(new Date().getTime(), 'yyyy-MM-dd');
 
 
@@ -55,6 +55,7 @@
         function getCounterData() {
             getStatus(vm.countId, 'count').then(function(response) {
                 vm.counterStatus = response;
+
             });
 
             getTimeline(vm.countId, todayDate, 7, 'count', 'day').then(function(response) {
@@ -170,7 +171,7 @@
             //Creamos un array con la estructura básica sin inicializar
             weekday.forEach(function(dayText) {
                 var dayData = {};
-                dayData['x'] = dayText;         // jshint ignore:line
+                dayData['x'] = dayText; // jshint ignore:line
                 dayData[typeText + "-max"] = 0;
                 dayData[typeText + "-min"] = 0;
 
@@ -179,7 +180,7 @@
 
             //Recorremos los datos recibidos y rellenamos el array antes creado
             lodash.forEach(data, function(dayData) {
-                var weekDayIndex = (new Date(dayData.date)).getDay(); 
+                var weekDayIndex = (new Date(dayData.date)).getDay();
                 datapoints[weekDayIndex][typeText + "-max"] = dayData.value_max;
                 datapoints[weekDayIndex][typeText + "-min"] = dayData.value_min;
             });
@@ -189,7 +190,7 @@
         }
 
 
-        
+
 
         /*
          *  Return an array with the last 7 days in text:
@@ -199,7 +200,7 @@
             var day = (new Date()).getDay(),
                 formatedArray = [];
 
-            for (var i = day+1; i <= 6; i++) {
+            for (var i = day + 1; i <= 6; i++) {
                 formatedArray.push(array[i]);
             }
             for (var j = 0; j <= day; j++) {

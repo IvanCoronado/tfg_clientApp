@@ -9,10 +9,10 @@
             </md-toolbar>
             <div layout="column" layout-gt-sm="row" layout-fill layout-align="center center" class="md-padding">
                 <div layout-align="center center" flex style="text-align:center">
-                    <c3chart ng-if="vm.countId !== null" bindto-id="counter-summary">
-                        <chart-column column-id="Asistentes" column-values="{{vm.counterStatus.value}}" column-type="gauge" />
-                        <chart-gauge min="0" max="{{vm.locationId.max_capacity}}" units=" aforo" width="39" />
-                    </c3chart>
+                  
+                    <canvas-gauge ng-if="vm.countId !== null" width="200" min="0" max="{{vm.locationId.max_capacity}}" value="vm.counterStatus.value" over-color="#009688"  mask="Aforo (@)" style="color: gray">
+                    </canvas-gauge>
+
                     <p ng-if="vm.countId !== null" class="md-caption">Última actualización: {{ vm.counterStatus.date | date:'dd/MM/yyyy @ HH:mm' }}</p>
                     <div ng-if="vm.countId === null" style="text-align:center" class="md-padding">
                         <i class="fa fa-plug"></i>
@@ -21,7 +21,7 @@
                 </div>
                 <div layout-align="center center" flex layout-fill class="md-padding">
                     <div ng-if="vm.temperatureId !== null" style="text-align:center">
-                        <p class="md-headline">{{ vm.temperatureStatus.value }} ºC</p>
+                        <p class="md-headline textHightlight">{{ vm.temperatureStatus.value }} ºC</p>
                         <p class="md-caption">Última actualización: {{ vm.temperatureStatus.date | date:'dd/MM/yyyy @ HH:mm' }}</p>
                     </div>
                     <div ng-if="vm.temperatureId === null" style="text-align:center">
@@ -31,7 +31,7 @@
                 </div>
                 <div layout-align="center center" flex layout-fill class="md-padding">
                     <div ng-if="vm.humidityId !== null" style="text-align:center">
-                        <p class="md-headline">{{ vm.humidityStatus.value }}% Humedad</p>
+                        <p class="md-headline textHightlight">{{ vm.humidityStatus.value }}% Humedad</p>
                         <p class="md-caption">Última actualización: {{ vm.humidityStatus.date | date:'dd/MM/yyyy @ HH:mm' }}</p>
                     </div>
                     <div ng-if="vm.humidityId === null" style="text-align:center">
@@ -107,7 +107,7 @@
                 </md-toolbar>
                 <div layout="row" layout-wrap layout-align="center center" class="">
                     <c3chart flex bindto-id="counter-historic-week" chart-data="counterWeekDatapoints" chart-columns="counterWeekDatacolumns" chart-x="datax">
-                        <chart-axis-x axis-position="outer-center" axis-type="category">            
+                        <chart-axis-x axis-position="outer-center" axis-type="category">
                         </chart-axis-x>
                     </c3chart>
                 </div>
@@ -151,7 +151,7 @@
                 </md-toolbar>
                 <div layout="row" layout-wrap layout-align="center center" class="">
                     <c3chart flex bindto-id="temperature-historic-week" chart-data="temperatureWeekDatapoints" chart-columns="temperatureWeekDatacolumns" chart-x="datax">
-                        <chart-axis-x axis-position="outer-center" axis-type="category">            
+                        <chart-axis-x axis-position="outer-center" axis-type="category">
                         </chart-axis-x>
                     </c3chart>
                 </div>
@@ -195,7 +195,7 @@
                 </md-toolbar>
                 <div layout="row" layout-wrap layout-align="center center" class="">
                     <c3chart flex bindto-id="humidity-historic-week" chart-data="humidityWeekDatapoints" chart-columns="humidityWeekDatacolumns" chart-x="datax">
-                        <chart-axis-x axis-position="outer-center" axis-type="category">            
+                        <chart-axis-x axis-position="outer-center" axis-type="category">
                         </chart-axis-x>
                     </c3chart>
                 </div>

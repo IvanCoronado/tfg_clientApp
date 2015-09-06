@@ -7,7 +7,8 @@
             'ngMaterial',
             'gridshore.c3js.chart',
             'ngLodash',
-            'ngMessages'
+            'ngMessages',
+            'ngCanvasGauge'
         ])
         .config(config)
         .run(security);
