@@ -68,7 +68,7 @@
              **/
             getTimeline(vm.countId, todayDate, 1, 'count', 'hour').then(function(response) {
                 $scope.counterDayDatapoints=getDayDatapoints(response, 'counter');
-                $scope.counterDayDatacolumns=[{"id":"counter-hour","type":"line","name":"Aforo"}];
+                $scope.counterDayDatacolumns=[{"id":"counter-hour","type":"line","name":"Aforo","color":"#FFC107"}];
             });
 
             /*
@@ -101,7 +101,7 @@
              **/
             getTimeline(vm.temperatureId, todayDate, 1, 'unique', 'hour').then(function(response) {
                 $scope.temperatureDayDatapoints=getDayDatapoints(response, 'temperature');
-                $scope.temperatureDayDatacolumns=[{"id":"temperature-hour","type":"line","name":"Temperatura"}];
+                $scope.temperatureDayDatacolumns=[{"id":"temperature-hour","type":"line","name":"Temperatura","color":"#FFC107"}];
             });
 
 
@@ -135,7 +135,7 @@
              **/
             getTimeline(vm.humidityId, todayDate, 1, 'unique', 'hour').then(function(response) {
                 $scope.humidityDayDatapoints=getDayDatapoints(response, 'humidity');
-                $scope.humidityDayDatacolumns=[{"id":"humidity-hour","type":"line","name":"% Humedad"}];
+                $scope.humidityDayDatacolumns=[{"id":"humidity-hour","type":"line","name":"% Humedad","color":"#FFC107"}];
             });
 
             /*

@@ -371,8 +371,39 @@ md-toast.md-info-toast-theme {
     text-align: center;
 }
 
+
 /* END canvas gauge*/
-.textHightlight{
-    color:#009688;
+
+.textHightlight {
+    color: #009688;
     font-weight: bold;
+}
+
+
+
+.tableButton{
+    cursor: pointer;
+}
+
+.COUNTER,.TEMPERATURE,.HUMIDITY{
+    margin: 0px 8px;
+    color: rgba(0,0,0,0.54);
+
+}
+.COUNTER {   
+    &:before {
+        content: "\f018";
+    }
+}
+
+.TEMPERATURE {
+    &:before {
+        content: "\f06d";
+    }
+}
+
+.HUMIDITY {
+    &:before {
+        content: "\f043";
+    }
 }

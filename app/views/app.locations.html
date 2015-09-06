@@ -1,27 +1,28 @@
-<md-card flex-gt-sm="100" flex-gt-md="70" >
-	<section >
-      <md-subheader class="md-primary">Localizaciones</md-subheader>
-      <md-list layout-padding>
-      	<md-divider></md-divider>
-        <md-list-item class="md-3-line" ng-repeat="location in vm.locations track by $index">
+<div flex layout="column" layout-align="center center" class="table-responsive-vertical">
+    <h2>Localizaciones</h2>
+    <table flex-gt-lg="70" flex-gt-sm="100"  id="table" class="table table-hover table-mc-amber table-striped md-whiteframe-z2-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Ciudad</th>
+                <th>Descripcción</th>
+                <th>Sensores</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="tableButton" title="Ver localización" ng-repeat="location in vm.locations track by $index" ui-sref="app.detail({ locationId: location.id })">
+                <td  data-title="Nombre">{{location.name}}</td>
+                <td  data-title="Ciudad">{{location.city}}</td>
+                <td  data-title="Descripcción">{{location.description}}</td>
+                <td  data-title="Sensores">
 
-            <img ui-sref="app.detail({ locationId: location.id })" ng-src="{{message.face}}" class="md-avatar" alt="{{message.who}}">
-            <div class="md-list-item-text">
-              <h3>{{location.name}}</h3>
-              <h4>{{location.city}}</h4>
-              <p>
-                {{location.description}}
-              </p>
-              </br>
-              <div layout="row" layout-wrap layout-align="space-around center">
-              	 <span style="min-width:150px;" ng-repeat="device in location.devices">
-              	 	{{device.type_name}}
-              	 </span>
-              </div>
-            </div>
-            <md-divider></md-divider>
-        </md-list-item>
+                  <div layout="row" layout-align="end center">
+                    <i flex ng-repeat="device in location.devices"  class="fa fa-lg {{device.type_name}}" title="{{device.type_name}}"></i>
+                  </div>
+                    
 
-      </md-list>
-    </section>
-</md-card>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

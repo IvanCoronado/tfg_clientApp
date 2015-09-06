@@ -15,20 +15,22 @@
                 <td  data-title="Ciudad">{{location.city}}</td>
                 <td  data-title="Descripcción">{{location.description}}</td>
                 <td  data-title="Acciones">
-                    
-                        <md-button flex class="md-icon-button table-button" ng-click="vm.updateLocation(location.id)" aria-label="Edit">
+                        <div layout="row" layout-align="end center">
+                         <md-button class="md-icon-button table-button" ng-click="vm.updateLocation(location.id)" aria-label="Edit">
                             <md-tooltip>
                                 Modificar
                             </md-tooltip>
                             <md-icon md-font-set="fa fa-lg fa-edit"></md-icon>
                         </md-button>
 
-                        <md-button flex class="md-icon-button table-button" ng-click="vm.removeLocation(location.id, $index)" aria-label="Remove location">
+                        <md-button class="md-icon-button table-button" ng-click="vm.removeLocation(location.id, $index)" aria-label="Remove location">
                             <md-tooltip>
                                 Borrar
                             </md-tooltip>
                             <md-icon md-font-set="fa fa-lg fa-trash"></md-icon>
                         </md-button>
+                      </div>
+                       
               
                     
                 </td>
